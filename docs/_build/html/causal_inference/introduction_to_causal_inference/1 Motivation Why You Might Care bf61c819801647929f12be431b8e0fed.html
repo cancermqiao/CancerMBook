@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Motivation: Why You Might Care &#8212; CancerM Book</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CancerM Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing_page.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  机器学习(Machine Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../machine_learning/overview.html">
+   Here’s my sample title
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  强化学习(Reinforcement Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
+   UCL Course on RL
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction.html">
+     Lecture 1: Introduction to Reinforcement Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp.html">
+     Lecture 2: Markov Decision Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/leetcode/overview.html">
+   LeetCode
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/leetcode/sort.html">
+     排序
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  已读文章(Paper Read)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
+   Here’s my sample title
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/learning_MDPs_from_features.html">
+     Here’s my sample title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/notebooks.html">
+     Jupyter Notebook files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/causal_inference/introduction_to_causal_inference/1 Motivation Why You Might Care bf61c819801647929f12be431b8e0fed.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Motivation: Why You Might Care
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simpsons-paradox">
+   1.1 Simpson’s Paradox
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scenario-1">
+     Scenario 1
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scenario-2">
+     Scenario 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-causal-inference">
+   1.2 Applications of Causal Inference
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation-does-not-imply-causation">
+   1.3 Correlation Does Not Imply Causation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nicolas-cage-and-pool-drownings">
+     1.3.1 Nicolas Cage and Pool Drownings
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-association-not-causation">
+     1.3.2 Why is Association Not Causation?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-themes">
+   1.4 Main Themes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   下一章
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="motivation-why-you-might-care">
+<h1>1. Motivation: Why You Might Care<a class="headerlink" href="#motivation-why-you-might-care" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="simpsons-paradox">
+<h1>1.1 Simpson’s Paradox<a class="headerlink" href="#simpsons-paradox" title="Permalink to this headline">¶</a></h1>
+<p><img alt="1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled.png" src="causal_inference/introduction_to_causal_inference/1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled.png" /></p>
+<div class="section" id="scenario-1">
+<h2>Scenario 1<a class="headerlink" href="#scenario-1" title="Permalink to this headline">¶</a></h2>
+<p><img alt="1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%201.png" src="causal_inference/introduction_to_causal_inference/1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%201.png" /></p>
+<p>给更多病情严重的人采用B治疗方案，病情中等的人采用A治疗方案，所以在全局上看B治疗方案的死亡率更高，此时应当根据病情拆分人群评估，B治疗方案在各个人群上的死亡率都更低。</p>
+</div>
+<div class="section" id="scenario-2">
+<h2>Scenario 2<a class="headerlink" href="#scenario-2" title="Permalink to this headline">¶</a></h2>
+<p><img alt="1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%202.png" src="causal_inference/introduction_to_causal_inference/1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%202.png" /></p>
+<p>如果是由于B治疗方案等待时间长而导致病人的病情严重，如图1.2所示，那么评估B治疗方案对最终死亡率的影响，就应该在全局上进行。</p>
+</div>
+</div>
+<div class="section" id="applications-of-causal-inference">
+<h1>1.2 Applications of Causal Inference<a class="headerlink" href="#applications-of-causal-inference" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="correlation-does-not-imply-causation">
+<h1>1.3 Correlation Does Not Imply Causation<a class="headerlink" href="#correlation-does-not-imply-causation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nicolas-cage-and-pool-drownings">
+<h2>1.3.1 Nicolas Cage and Pool Drownings<a class="headerlink" href="#nicolas-cage-and-pool-drownings" title="Permalink to this headline">¶</a></h2>
+<p><img alt="1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%203.png" src="causal_inference/introduction_to_causal_inference/1%20Motivation%20Why%20You%20Might%20Care%20bf61c819801647929f12be431b8e0fed/Untitled%203.png" /></p>
+<p>如图所示，数据中有尼古拉斯凯奇主演的电影数量与游泳溺死的人数变化趋势相同，这是一种伪相关性，因为二者不具有因果性。</p>
+</div>
+<div class="section" id="why-is-association-not-causation">
+<h2>1.3.2 Why is Association Not Causation?<a class="headerlink" href="#why-is-association-not-causation" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="main-themes">
+<h1>1.4 Main Themes<a class="headerlink" href="#main-themes" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="id1">
+<h1>下一章<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./causal_inference/introduction_to_causal_inference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By CancerM Qiao<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 2-2 Hessian Matrix &#8212; CancerM Book</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CancerM Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing_page.html">
+   欢迎来到CancerM Book
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  机器学习(Machine Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="overview.html">
+   Machine Learning 2021(李宏毅)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ML2021Spring_HW1.html">
+     <strong>
+      Homework 1: COVID-19 Cases Prediction (Regression)
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Active%20Function.html">
+     常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  强化学习(Reinforcement Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
+   UCL Course on RL
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction.html">
+     Lecture 1: Introduction to Reinforcement Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp.html">
+     Lecture 2: Markov Decision Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  因果推断(Causal Inference)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
+   Introduction to Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch1.html">
+     1. Motivation: Why You Might Care
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
+     2 Potential Outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  已读文章(Paper Read)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
+   Here’s my sample title
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/learning_MDPs_from_features.html">
+     Here’s my sample title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/notebooks.html">
+     Jupyter Notebook files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/machine_learning/Machine Learning 2021(李宏毅)/SHARE_MLSpring2021_HW2_2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/machine_learning/Machine Learning 2021(李宏毅)/SHARE_MLSpring2021_HW2_2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hessian-matrix">
+   Hessian Matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-notice">
+   IMPORTANT NOTICE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-hessian-matrix">
+   Calculate Hessian Matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-package-to-compute-hessian">
+     Install Package to Compute Hessian.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import Libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-nn-model">
+     Define NN Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-pretrained-checkpoints">
+     Get Pretrained Checkpoints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-pretrained-checkpoints-and-training-data">
+     Load Pretrained Checkpoints and Training Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#function-to-compute-gradient-norm">
+     Function to compute gradient norm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#function-to-compute-minimum-ratio">
+     Function to compute minimum ratio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-derivation">
+     Mathematical Derivation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-2-2-hessian-matrix">
+<h1><strong>Homework 2-2 Hessian Matrix</strong><a class="headerlink" href="#homework-2-2-hessian-matrix" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://speech.ee.ntu.edu.tw/~hylee/ml/ml2021-course-data/hw/HW02/HW02.pdf">https://speech.ee.ntu.edu.tw/~hylee/ml/ml2021-course-data/hw/HW02/HW02.pdf</a></p></li>
+<li><p>Video (Chinese): <a class="reference external" href="https://youtu.be/PdjXnQbu2zo">https://youtu.be/PdjXnQbu2zo</a></p></li>
+<li><p>Video (English): <a class="reference external" href="https://youtu.be/ESRr-VCykBs">https://youtu.be/ESRr-VCykBs</a></p></li>
+</ul>
+<div class="section" id="hessian-matrix">
+<h2>Hessian Matrix<a class="headerlink" href="#hessian-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Imagine we are training a neural network and we are trying to find out whether the model is at <strong>local minima like, saddle point, or none of the above</strong>. We can make our decision by calculating the Hessian matrix.</p>
+<p>In practice, it is really hard to find a point where the gradient equals zero or all of the eigenvalues in Hessian matrix are greater than zero. In this homework, we make the following two assumptions:</p>
+<ol class="simple">
+<li><p>View gradient norm less than 1e-3 as <strong>gradient equals to zero</strong>.</p></li>
+<li><p>If minimum ratio is greater than 0.5 and gradient norm is less than 1e-3, then we assume that the model is at “local minima like”.</p></li>
+</ol>
+<blockquote>
+<div><p>Minimum ratio is defined as the proportion of positive eigenvalues.</p>
+</div></blockquote>
+</div>
+<div class="section" id="important-notice">
+<h2>IMPORTANT NOTICE<a class="headerlink" href="#important-notice" title="Permalink to this headline">¶</a></h2>
+<p>In this homework, students with different student IDs will get different answers. Make sure to fill in your <code class="docutils literal notranslate"><span class="pre">student_id</span></code> in the following block correctly. Otherwise, your code may not run correctly and you will get a wrong answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">student_id</span> <span class="o">=</span> <span class="s1">&#39;your_student_id&#39;</span> <span class="c1"># fill with your student ID</span>
+
+<span class="k">assert</span> <span class="n">student_id</span> <span class="o">!=</span> <span class="s1">&#39;your_student_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Please fill in your student_id before you start.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculate-hessian-matrix">
+<h2>Calculate Hessian Matrix<a class="headerlink" href="#calculate-hessian-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The computation of Hessian is done by TA, you don’t need to and shouldn’t change the following code. The only thing you need to do is to run the following blocks and determine whether the model is at <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">minima</span> <span class="pre">like</span></code>, <code class="docutils literal notranslate"><span class="pre">saddle</span> <span class="pre">point</span></code>, or <code class="docutils literal notranslate"><span class="pre">none</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">above</span></code> according to the value of <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">norm</span></code> and <code class="docutils literal notranslate"><span class="pre">minimum</span> <span class="pre">ratio</span></code>.</p>
+<div class="section" id="install-package-to-compute-hessian">
+<h3>Install Package to Compute Hessian.<a class="headerlink" href="#install-package-to-compute-hessian" title="Permalink to this headline">¶</a></h3>
+<p>The autograd-lib library is used to compute Hessian matrix. You can check the full document here <a class="reference external" href="https://github.com/cybertronai/autograd-lib">https://github.com/cybertronai/autograd-lib</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install autograd-lib
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: autograd-lib in /usr/local/lib/python3.7/dist-packages (0.0.7)
+Requirement already satisfied: gin-config in /usr/local/lib/python3.7/dist-packages (from autograd-lib) (0.4.0)
+Requirement already satisfied: seaborn in /usr/local/lib/python3.7/dist-packages (from autograd-lib) (0.11.1)
+Requirement already satisfied: pytorch-lightning in /usr/local/lib/python3.7/dist-packages (from autograd-lib) (1.2.3)
+Requirement already satisfied: scipy&gt;=1.0 in /usr/local/lib/python3.7/dist-packages (from seaborn-&gt;autograd-lib) (1.4.1)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/local/lib/python3.7/dist-packages (from seaborn-&gt;autograd-lib) (1.19.5)
+Requirement already satisfied: pandas&gt;=0.23 in /usr/local/lib/python3.7/dist-packages (from seaborn-&gt;autograd-lib) (1.1.5)
+Requirement already satisfied: matplotlib&gt;=2.2 in /usr/local/lib/python3.7/dist-packages (from seaborn-&gt;autograd-lib) (3.2.2)
+Requirement already satisfied: torch&gt;=1.4 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (1.8.0+cu101)
+Requirement already satisfied: tensorboard&gt;=2.2.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (2.4.1)
+Requirement already satisfied: tqdm&gt;=4.41.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (4.41.1)
+Requirement already satisfied: future&gt;=0.17.1 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (0.18.2)
+Requirement already satisfied: fsspec[http]&gt;=0.8.1 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (0.8.7)
+Requirement already satisfied: PyYAML!=5.4.*,&gt;=5.1 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning-&gt;autograd-lib) (5.3.1)
+Requirement already satisfied: python-dateutil&gt;=2.7.3 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.23-&gt;seaborn-&gt;autograd-lib) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.23-&gt;seaborn-&gt;autograd-lib) (2018.9)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=2.2-&gt;seaborn-&gt;autograd-lib) (0.10.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=2.2-&gt;seaborn-&gt;autograd-lib) (2.4.7)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=2.2-&gt;seaborn-&gt;autograd-lib) (1.3.1)
+Requirement already satisfied: typing-extensions in /usr/local/lib/python3.7/dist-packages (from torch&gt;=1.4-&gt;pytorch-lightning-&gt;autograd-lib) (3.7.4.3)
+Requirement already satisfied: google-auth-oauthlib&lt;0.5,&gt;=0.4.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (0.4.3)
+Requirement already satisfied: wheel&gt;=0.26; python_version &gt;= &quot;3&quot; in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (0.36.2)
+Requirement already satisfied: google-auth&lt;2,&gt;=1.6.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.27.1)
+Requirement already satisfied: six&gt;=1.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.15.0)
+Requirement already satisfied: protobuf&gt;=3.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (3.12.4)
+Requirement already satisfied: grpcio&gt;=1.24.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.32.0)
+Requirement already satisfied: werkzeug&gt;=0.11.15 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.0.1)
+Requirement already satisfied: absl-py&gt;=0.4 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (0.10.0)
+Requirement already satisfied: requests&lt;3,&gt;=2.21.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (2.23.0)
+Requirement already satisfied: markdown&gt;=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (3.3.4)
+Requirement already satisfied: setuptools&gt;=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (54.0.0)
+Requirement already satisfied: tensorboard-plugin-wit&gt;=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.8.0)
+Requirement already satisfied: importlib-metadata; python_version &lt; &quot;3.8&quot; in /usr/local/lib/python3.7/dist-packages (from fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (3.7.0)
+Requirement already satisfied: aiohttp; extra == &quot;http&quot; in /usr/local/lib/python3.7/dist-packages (from fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (3.7.4.post0)
+Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.7/dist-packages (from google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.3.0)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4; python_version &gt;= &quot;3.6&quot; in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;2,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (4.7.2)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;2,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (4.2.1)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;2,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (0.2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (1.24.3)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (3.0.4)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.7/dist-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (2.10)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (2020.12.5)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata; python_version &lt; &quot;3.8&quot;-&gt;fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (3.4.1)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.7/dist-packages (from aiohttp; extra == &quot;http&quot;-&gt;fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (5.1.0)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp; extra == &quot;http&quot;-&gt;fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (20.3.0)
+Requirement already satisfied: async-timeout&lt;4.0,&gt;=3.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp; extra == &quot;http&quot;-&gt;fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (3.0.1)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp; extra == &quot;http&quot;-&gt;fsspec[http]&gt;=0.8.1-&gt;pytorch-lightning-&gt;autograd-lib) (1.6.3)
+Requirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.7/dist-packages (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (3.1.0)
+Requirement already satisfied: pyasn1&gt;=0.1.3 in /usr/local/lib/python3.7/dist-packages (from rsa&lt;5,&gt;=3.1.4; python_version &gt;= &quot;3.6&quot;-&gt;google-auth&lt;2,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning-&gt;autograd-lib) (0.4.8)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="import-libraries">
+<h3>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">autograd_lib</span> <span class="kn">import</span> <span class="n">autograd_lib</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Dataset</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-nn-model">
+<h3>Define NN Model<a class="headerlink" href="#define-nn-model" title="Permalink to this headline">¶</a></h3>
+<p>The NN model here is used to fit a single variable math function.
+$<span class="math notranslate nohighlight">\(f(x) = \frac{\sin(5\pi x)}{5\pi x}.\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MathRegressor</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_hidden</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regressor</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_hidden</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_hidden</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regressor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-pretrained-checkpoints">
+<h3>Get Pretrained Checkpoints<a class="headerlink" href="#get-pretrained-checkpoints" title="Permalink to this headline">¶</a></h3>
+<p>The pretrained checkpoints is done by TA. Each student will get a different checkpoint.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!gdown --id 1ym6G7KKNkbsqSnMmnxdQKHO1JBoF0LPR
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
+From: https://drive.google.com/uc?id=1ym6G7KKNkbsqSnMmnxdQKHO1JBoF0LPR
+To: /content/data.pth
+
+  0% 0.00/34.5k [00:00&lt;?, ?B/s]
+100% 34.5k/34.5k [00:00&lt;00:00, 58.8MB/s]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-pretrained-checkpoints-and-training-data">
+<h3>Load Pretrained Checkpoints and Training Data<a class="headerlink" href="#load-pretrained-checkpoints-and-training-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the key from student_id</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="n">student_id</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;[0-9]&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># load checkpoint and data corresponding to the key</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MathRegressor</span><span class="p">()</span>
+<span class="n">autograd_lib</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data.pth&#39;</span><span class="p">)[</span><span class="n">key</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">])</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-to-compute-gradient-norm">
+<h3>Function to compute gradient norm<a class="headerlink" href="#function-to-compute-gradient-norm" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># function to compute gradient norm</span>
+<span class="k">def</span> <span class="nf">compute_gradient_norm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="n">param_norm</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_norm</span><span class="p">)</span>
+
+    <span class="n">grad_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span> <span class="c1"># compute mean of gradient norms</span>
+
+    <span class="k">return</span> <span class="n">grad_mean</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-to-compute-minimum-ratio">
+<h3>Function to compute minimum ratio<a class="headerlink" href="#function-to-compute-minimum-ratio" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># source code from the official document https://github.com/cybertronai/autograd-lib</span>
+
+<span class="c1"># helper function to save activations</span>
+<span class="k">def</span> <span class="nf">save_activations</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A is the input of the layer, we use batch size of 6 here</span>
+<span class="sd">    layer 1: A has size of (6, 1)</span>
+<span class="sd">    layer 2: A has size of (6, 128)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">activations</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span>
+
+<span class="c1"># helper function to compute Hessian matrix</span>
+<span class="k">def</span> <span class="nf">compute_hess</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    B is the backprop value of the layer</span>
+<span class="sd">    layer 1: B has size of (6, 128)</span>
+<span class="sd">    layer 2: B ahs size of (6, 1)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">activations</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span>
+    <span class="n">BA</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nl,ni-&gt;nli&#39;</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span> <span class="c1"># do batch-wise outer product</span>
+
+    <span class="c1"># full Hessian</span>
+    <span class="n">hess</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nli,nkj-&gt;likj&#39;</span><span class="p">,</span> <span class="n">BA</span><span class="p">,</span> <span class="n">BA</span><span class="p">)</span> <span class="c1"># do batch-wise outer product, then sum over the batch</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># function to compute the minimum ratio</span>
+<span class="k">def</span> <span class="nf">compute_minimum_ratio</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="c1"># compute Hessian matrix</span>
+    <span class="c1"># save the gradient of each layer</span>
+    <span class="k">with</span> <span class="n">autograd_lib</span><span class="o">.</span><span class="n">module_hook</span><span class="p">(</span><span class="n">save_activations</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+
+    <span class="c1"># compute Hessian according to the gradient value stored in the previous step</span>
+    <span class="k">with</span> <span class="n">autograd_lib</span><span class="o">.</span><span class="n">module_hook</span><span class="p">(</span><span class="n">compute_hess</span><span class="p">):</span>
+        <span class="n">autograd_lib</span><span class="o">.</span><span class="n">backward_hessian</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;LeastSquares&#39;</span><span class="p">)</span>
+
+    <span class="n">layer_hess</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">hess</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">minimum_ratio</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># compute eigenvalues of the Hessian matrix</span>
+    <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">layer_hess</span><span class="p">:</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="n">h_eig</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">symeig</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">eigenvalues</span> <span class="c1"># torch.symeig() returns eigenvalues and eigenvectors of a real symmetric matrix</span>
+        <span class="n">num_greater</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h_eig</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">minimum_ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num_greater</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">h_eig</span><span class="p">))</span>
+
+    <span class="n">ratio_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">minimum_ratio</span><span class="p">)</span> <span class="c1"># compute mean of minimum ratio</span>
+
+    <span class="k">return</span> <span class="n">ratio_mean</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mathematical-derivation">
+<h3>Mathematical Derivation<a class="headerlink" href="#mathematical-derivation" title="Permalink to this headline">¶</a></h3>
+<p>Method used here: <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">https://en.wikipedia.org/wiki/Gauss–Newton_algorithm</a></p>
+<blockquote>
+<div><p><strong>Notations</strong> \
+<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>: the input of the layer. \
+<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>: the backprop value. \
+<span class="math notranslate nohighlight">\(\mathbf{Z}\)</span>: the output of the layer. \
+<span class="math notranslate nohighlight">\(L\)</span>: the total loss, mean squared error was used here, <span class="math notranslate nohighlight">\(L=e^2\)</span>. \
+<span class="math notranslate nohighlight">\(w\)</span>: the weight value.</p>
+</div></blockquote>
+<p>Assume that the input dimension of the layer is <span class="math notranslate nohighlight">\(n\)</span>, and the output dimension of the layer is <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p>The derivative of the loss is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \left(\frac{\partial L}{\partial w}\right)_{nm} &amp;= \mathbf{A}_m \mathbf{B}_n,
+\end{align*}\]</div>
+<p>which can be written as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial L}{\partial w} &amp;= \mathbf{B} \times \mathbf{A}.
+\end{align*}\]</div>
+<p>The Hessian can be derived as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \mathbf{H}_{ij}&amp;=\frac{\partial^2 L}{\partial w_i \partial w_j} \\
+    &amp;= \frac{\partial}{\partial w_i}\left(\frac{\partial L}{\partial w_j}\right) \\
+    &amp;= \frac{\partial}{\partial w_i}\left(\frac{2e\partial e}{\partial w_j}\right) \\
+    &amp;= 2\frac{\partial e}{\partial w_i}\frac{\partial e}{\partial w_j}+2e\frac{\partial^2 e}{\partial w_j \partial w_i}.
+\end{align*}\]</div>
+<p>We neglect the second-order derivative term because the term is relatively small (<span class="math notranslate nohighlight">\(e\)</span> is small)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \mathbf{H}_{ij}
+    &amp;\propto \frac{\partial e}{\partial w_i}\frac{\partial e}{\partial w_j},
+\end{align*}\]</div>
+<p>and as the error <span class="math notranslate nohighlight">\(e\)</span> is a constant</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \mathbf{H}_{ij}
+    &amp;\propto \frac{\partial L}{\partial w_i}\frac{\partial L}{\partial w_j},
+\end{align*}\]</div>
+<p>then the full Hessian becomes</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \mathbf{H} &amp;\propto (\mathbf{B}\times\mathbf{A})\times(\mathbf{B}\times\mathbf{A}).
+\end{align*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the main function to compute gradient norm and minimum ratio</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+
+    <span class="n">gradient_norm</span> <span class="o">=</span> <span class="n">compute_gradient_norm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">minimum_ratio</span> <span class="o">=</span> <span class="n">compute_minimum_ratio</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gradient norm: </span><span class="si">{}</span><span class="s1">, minimum ratio: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gradient_norm</span><span class="p">,</span> <span class="n">minimum_ratio</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After running this block, you will get the value of <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">norm</span></code> and <code class="docutils literal notranslate"><span class="pre">minimum</span> <span class="pre">ratio</span></code>. Determine whether the model is at <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">minima</span> <span class="pre">like</span></code>, <code class="docutils literal notranslate"><span class="pre">saddle</span> <span class="pre">point</span></code>, or <code class="docutils literal notranslate"><span class="pre">none</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">above</span></code>, and then submit your choice to NTU COOL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># fix random seed</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># reset compute dictionaries</span>
+    <span class="n">activations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">hess</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="c1"># compute Hessian</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gradient norm: 0.07222428917884827, minimum ratio: 0.46484375
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machine_learning/Machine Learning 2021(李宏毅)"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By CancerM Qiao<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

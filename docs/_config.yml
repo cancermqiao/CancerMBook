@@ -1,0 +1,94 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+title: "CancerM Book"
+author: CancerM Qiao
+email: cancermqiao@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  This is a book built with Jupyter Books.
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: "cache"
+  
+repository:
+  url: https://github.com/cancermqiao/CancerMBook.git
+  branch: master
+  path_to_book: docs
+
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+
+latex:
+  latex_engine: xelatex
+  latex_documents:
+    targetname: book.tex
+
+sphinx:
+  config:
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+    bibtex_reference_style: author_year  # or label, super, \supercite
+    # TODO: #917 this path will be the default in sphinx v4
+    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # However, it is incompatible with the mathjax config below for macros
+    mathjax_config:
+      TeX:
+        Macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
+    intersphinx_mapping:
+      ebp:
+        - "https://executablebooks.org/en/latest/"
+        - null
+      myst-parser:
+        - "https://myst-parser.readthedocs.io/en/latest/"
+        - null
+      myst-nb:
+        - "https://myst-nb.readthedocs.io/en/latest/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master"
+        - null
+      nbformat:
+        - "https://nbformat.readthedocs.io/en/latest"
+        - null
+      sphinx-panels:
+        - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
+        - null
+    rediraffe_branch: 'master'
+    language: ch
+    html_extra_path:
+      - images/badge.svg
+
+
+  extra_extensions:
+    - sphinx_click.ext
+    - sphinx_inline_tabs
+    - sphinxext.rediraffe

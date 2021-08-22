@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Batch size for training, validation, and testing.
+# A greater batch size usually gives a more stable gradient.
+# But the GPU memory is limited, so please adjust it carefully.
+batch_size = 128
+
+# Construct datasets.
+# The argument "loader" tells how torchvision reads the data.
+train_set = DatasetFolder("food-11/training/labeled", loader=lambda x: Image.open(x), extensions="jpg", transform=train_tfm)
+valid_set = DatasetFolder("food-11/validation", loader=lambda x: Image.open(x), extensions="jpg", transform=test_tfm)
+unlabeled_set = DatasetFolder("food-11/training/unlabeled", loader=lambda x: Image.open(x), extensions="jpg", transform=train_tfm)
+test_set = DatasetFolder("food-11/testing", loader=lambda x: Image.open(x), extensions="jpg", transform=test_tfm)
+
+# Construct data loaders.
+train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
+valid_loader = DataLoader(valid_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
+test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-8-2d106206745e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;31m# Construct datasets.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;31m# The argument "loader" tells how torchvision reads the data.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0mtrain_set[0m [0;34m=[0m [0mDatasetFolder[0m[0;34m([0m[0;34m"food-11/training/labeled"[0m[0;34m,[0m [0mloader[0m[0;34m=[0m[0;32mlambda[0m [0mx[0m[0;34m:[0m [0mImage[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m,[0m [0mextensions[0m[0;34m=[0m[0;34m"jpg"[0m[0;34m,[0m [0mtransform[0m[0;34m=[0m[0mtrain_tfm[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0mvalid_set[0m [0;34m=[0m [0mDatasetFolder[0m[0;34m([0m[0;34m"food-11/validation"[0m[0;34m,[0m [0mloader[0m[0;34m=[0m[0;32mlambda[0m [0mx[0m[0;34m:[0m [0mImage[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m,[0m [0mextensions[0m[0;34m=[0m[0;34m"jpg"[0m[0;34m,[0m [0mtransform[0m[0;34m=[0m[0mtest_tfm[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0munlabeled_set[0m [0;34m=[0m [0mDatasetFolder[0m[0;34m([0m[0;34m"food-11/training/unlabeled"[0m[0;34m,[0m [0mloader[0m[0;34m=[0m[0;32mlambda[0m [0mx[0m[0;34m:[0m [0mImage[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m,[0m [0mextensions[0m[0;34m=[0m[0;34m"jpg"[0m[0;34m,[0m [0mtransform[0m[0;34m=[0m[0mtrain_tfm[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/py3/lib/python3.8/site-packages/torchvision/datasets/folder.py[0m in [0;36m__init__[0;34m(self, root, loader, extensions, transform, target_transform, is_valid_file)[0m
+[1;32m    143[0m         super(DatasetFolder, self).__init__(root, transform=transform,
+[1;32m    144[0m                                             target_transform=target_transform)
+[0;32m--> 145[0;31m         [0mclasses[0m[0;34m,[0m [0mclass_to_idx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mfind_classes[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mroot[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    146[0m         [0msamples[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mmake_dataset[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mroot[0m[0;34m,[0m [0mclass_to_idx[0m[0;34m,[0m [0mextensions[0m[0;34m,[0m [0mis_valid_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    147[0m [0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/py3/lib/python3.8/site-packages/torchvision/datasets/folder.py[0m in [0;36mfind_classes[0;34m(self, directory)[0m
+[1;32m    219[0m             [0;34m([0m[0mTuple[0m[0;34m[[0m[0mList[0m[0;34m[[0m[0mstr[0m[0;34m][0m[0;34m,[0m [0mDict[0m[0;34m[[0m[0mstr[0m[0;34m,[0m [0mint[0m[0;34m][0m[0;34m][0m[0;34m)[0m[0;34m:[0m [0mList[0m [0mof[0m [0mall[0m [0mclasses[0m [0;32mand[0m [0mdictionary[0m [0mmapping[0m [0meach[0m [0;32mclass[0m [0mto[0m [0man[0m [0mindex[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    220[0m         """
+[0;32m--> 221[0;31m         [0;32mreturn[0m [0mfind_classes[0m[0;34m([0m[0mdirectory[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    222[0m [0;34m[0m[0m
+[1;32m    223[0m     [0;32mdef[0m [0m__getitem__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mindex[0m[0;34m:[0m [0mint[0m[0;34m)[0m [0;34m->[0m [0mTuple[0m[0;34m[[0m[0mAny[0m[0;34m,[0m [0mAny[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/py3/lib/python3.8/site-packages/torchvision/datasets/folder.py[0m in [0;36mfind_classes[0;34m(directory)[0m
+[1;32m     38[0m     [0mSee[0m [0;34m:[0m[0;32mclass[0m[0;34m:[0m[0;31m`[0m[0mDatasetFolder[0m[0;31m`[0m [0;32mfor[0m [0mdetails[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     39[0m     """
+[0;32m---> 40[0;31m     [0mclasses[0m [0;34m=[0m [0msorted[0m[0;34m([0m[0mentry[0m[0;34m.[0m[0mname[0m [0;32mfor[0m [0mentry[0m [0;32min[0m [0mos[0m[0;34m.[0m[0mscandir[0m[0;34m([0m[0mdirectory[0m[0;34m)[0m [0;32mif[0m [0mentry[0m[0;34m.[0m[0mis_dir[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     41[0m     [0;32mif[0m [0;32mnot[0m [0mclasses[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     42[0m         [0;32mraise[0m [0mFileNotFoundError[0m[0;34m([0m[0;34mf"Couldn't find any class folder in {directory}."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'food-11/training/labeled'
+FileNotFoundError: [Errno 2] No such file or directory: 'food-11/training/labeled'
+

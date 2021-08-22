@@ -1,0 +1,42 @@
+format: jb-book
+root: landing_page.md
+parts:
+  - caption: 机器学习(Machine Learning)
+    chapters:
+    - file: machine_learning/Machine Learning 2021(李宏毅)/overview
+      sections:
+      - file: machine_learning/Machine Learning 2021(李宏毅)/ML2021Spring_HW1
+      - file: machine_learning/Machine Learning 2021(李宏毅)/Active Function
+    
+  - caption: 强化学习(Reinforcement Learning)
+    chapters:
+    - file: reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview
+      sections:
+      - file: reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction
+      - file: reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp
+
+  - caption: 因果推断(Causal Inference)
+    chapters:
+    - file: causal_inference/introduction_to_causal_inference/overview
+      sections:
+        - file: causal_inference/introduction_to_causal_inference/ch1
+        - file: causal_inference/introduction_to_causal_inference/ch2
+        - file: causal_inference/introduction_to_causal_inference/ch3
+        - file: causal_inference/introduction_to_causal_inference/ch4
+        
+
+  - caption: 编程(Program)
+    chapters:
+    - file: program/leetcode/overview
+      sections:
+      - file: program/leetcode/sort
+  
+  - caption: 已读文章(Paper Read)
+    chapters:
+    - file: papers/reinforcement_learning/overview.md
+      sections:
+      - file: papers/reinforcement_learning/learning_MDPs_from_features.md
+      - file: papers/reinforcement_learning/notebooks.ipynb
+      
+      
+  

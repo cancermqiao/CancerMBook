@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+plot_learning_curve(model_loss_record, title='deep model')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-14-b16e30382e2d>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mplot_learning_curve[0m[0;34m([0m[0mmodel_loss_record[0m[0;34m,[0m [0mtitle[0m[0;34m=[0m[0;34m'deep model'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-3-4759b8110398>[0m in [0;36mplot_learning_curve[0;34m(loss_record, title)[0m
+[1;32m      8[0m     [0mx_1[0m [0;34m=[0m [0mrange[0m[0;34m([0m[0mtotal_steps[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m     [0mx_2[0m [0;34m=[0m [0mx_1[0m[0;34m[[0m[0;34m:[0m[0;34m:[0m[0mlen[0m[0;34m([0m[0mloss_record[0m[0;34m[[0m[0;34m'train'[0m[0;34m][0m[0;34m)[0m [0;34m//[0m [0mlen[0m[0;34m([0m[0mloss_record[0m[0;34m[[0m[0;34m'dev'[0m[0;34m][0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m     [0mfigure[0m[0;34m([0m[0mfigsize[0m[0;34m=[0m[0;34m([0m[0;36m6[0m[0;34m,[0m [0;36m4[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m     [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mx_1[0m[0;34m,[0m [0mloss_record[0m[0;34m[[0m[0;34m'train'[0m[0;34m][0m[0;34m,[0m [0mc[0m[0;34m=[0m[0;34m'tab:red'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'train'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m     [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mx_2[0m[0;34m,[0m [0mloss_record[0m[0;34m[[0m[0;34m'dev'[0m[0;34m][0m[0;34m,[0m [0mc[0m[0;34m=[0m[0;34m'tab:cyan'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'dev'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'figure' is not defined
+NameError: name 'figure' is not defined
+

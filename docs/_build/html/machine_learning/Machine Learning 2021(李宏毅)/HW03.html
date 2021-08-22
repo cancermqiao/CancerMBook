@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 3 - Convolutional Neural Network &#8212; CancerM Book</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CancerM Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing_page.html">
+   欢迎来到CancerM Book
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  机器学习(Machine Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="overview.html">
+   Machine Learning 2021(李宏毅)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ML2021Spring_HW1.html">
+     <strong>
+      Homework 1: COVID-19 Cases Prediction (Regression)
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Active%20Function.html">
+     常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  强化学习(Reinforcement Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
+   UCL Course on RL
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction.html">
+     Lecture 1: Introduction to Reinforcement Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp.html">
+     Lecture 2: Markov Decision Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  因果推断(Causal Inference)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
+   Introduction to Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch1.html">
+     1. Motivation: Why You Might Care
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
+     2 Potential Outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  已读文章(Paper Read)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
+   Here’s my sample title
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/learning_MDPs_from_features.html">
+     Here’s my sample title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/notebooks.html">
+     Jupyter Notebook files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/machine_learning/Machine Learning 2021(李宏毅)/HW03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/machine_learning/Machine Learning 2021(李宏毅)/HW03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-the-dataset">
+   <strong>
+    About the Dataset
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   常用的激活函数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-packages">
+   <strong>
+    Import Packages
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-data-loader-and-transforms">
+   <strong>
+    Dataset, Data Loader, and Transforms
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model">
+   <strong>
+    Model
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning-you-must-know">
+     <strong>
+      WARNING – You Must Know
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training">
+   <strong>
+    Training
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing">
+   <strong>
+    Testing
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning-keep-in-mind">
+     <strong>
+      WARNING – Keep in Mind
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-3-convolutional-neural-network">
+<h1><strong>Homework 3 - Convolutional Neural Network</strong><a class="headerlink" href="#homework-3-convolutional-neural-network" title="Permalink to this headline">¶</a></h1>
+<p>This is the example code of homework 3 of the machine learning course by Prof. Hung-yi Lee.</p>
+<p>In this homework, you are required to build a convolutional neural network for image classification, possibly with some advanced training tips.</p>
+<p>There are three levels here:</p>
+<p><strong>Easy</strong>: Build a simple convolutional neural network as the baseline. (2 pts)</p>
+<p><strong>Medium</strong>: Design a better architecture or adopt different data augmentations to improve the performance. (2 pts)</p>
+<p><strong>Hard</strong>: Utilize provided unlabeled data to obtain better results. (2 pts)</p>
+<div class="section" id="about-the-dataset">
+<h2><strong>About the Dataset</strong><a class="headerlink" href="#about-the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>The dataset used here is food-11, a collection of food images in 11 classes.</p>
+<p>For the requirement in the homework, TAs slightly modified the data.
+Please DO NOT access the original fully-labeled training data or testing labels.</p>
+<p>Also, the modified dataset is for this course only, and any further distribution or commercial use is forbidden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigmoid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>常用的激活函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Sigmoid Function:</p>
+<div class="math notranslate nohighlight">
+\[f(x)=\frac{1}{1+e^{-x}}\]</div>
+<p>导数</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+f^\prime(x)&amp;=\frac{e^{-x}}{(1+e^{-x})^2} \\
+&amp;=\frac{1}{1+e^{-x}}\cdot \frac{e^{-x}}{1+e^{-x}} \\
+&amp;=f(x)\cdot \left(1-f(x)\right)
+\end{split}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset</span>
+<span class="c1"># You may choose where to download the data.</span>
+
+<span class="c1"># Google Drive</span>
+<span class="o">!</span>gdown --id <span class="s1">&#39;1awF7pZ9Dz7X1jn1_QAiKN-_v56veCEKy&#39;</span> --output food-11.zip
+
+<span class="c1"># Dropbox</span>
+<span class="c1"># !wget https://www.dropbox.com/s/m9q6273jl3djall/food-11.zip -O food-11.zip</span>
+
+<span class="c1"># MEGA</span>
+<span class="c1"># !sudo apt install megatools</span>
+<span class="c1"># !megadl &quot;https://mega.nz/#!zt1TTIhK!ZuMbg5ZjGWzWX1I6nEUbfjMZgCmAgeqJlwDkqdIryfg&quot;</span>
+
+<span class="c1"># Unzip the dataset.</span>
+<span class="c1"># This may take some time.</span>
+<span class="o">!</span>unzip -q food-11.zip
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>zsh:1: command not found: gdown
+--2021-08-09 12:03:29--  https://www.dropbox.com/s/m9q6273jl3djall/food-11.zip
+正在解析主机 www.dropbox.com (www.dropbox.com)... 130.211.15.150
+正在连接 www.dropbox.com (www.dropbox.com)|130.211.15.150|:443... ^C
+[food-11.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of food-11.zip or
+        food-11.zip.zip, and cannot find food-11.zip.ZIP, period.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HW03.ipynb  food-11.zip
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="import-packages">
+<h2><strong>Import Packages</strong><a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h2>
+<p>First, we need to import packages that will be used later.</p>
+<p>In this homework, we highly rely on <strong>torchvision</strong>, a library of PyTorch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary packages.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1"># &quot;ConcatDataset&quot; and &quot;Subset&quot; are possibly useful when doing semi-supervised learning.</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">ConcatDataset</span><span class="p">,</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Subset</span>
+<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">DatasetFolder</span>
+
+<span class="c1"># This is for the progress bar.</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-data-loader-and-transforms">
+<h2><strong>Dataset, Data Loader, and Transforms</strong><a class="headerlink" href="#dataset-data-loader-and-transforms" title="Permalink to this headline">¶</a></h2>
+<p>Torchvision provides lots of useful utilities for image preprocessing, data wrapping as well as data augmentation.</p>
+<p>Here, since our data are stored in folders by class labels, we can directly apply <strong>torchvision.datasets.DatasetFolder</strong> for wrapping data without much effort.</p>
+<p>Please refer to <a class="reference external" href="https://pytorch.org/vision/stable/transforms.html">PyTorch official website</a> for details about different transforms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It is important to do data augmentation in training.</span>
+<span class="c1"># However, not every augmentation is useful.</span>
+<span class="c1"># Please think about what kind of augmentation is helpful for food recognition.</span>
+<span class="n">train_tfm</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="c1"># Resize the image into a fixed shape (height = width = 128)</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)),</span>
+    <span class="c1"># You may add some transforms here.</span>
+    <span class="c1"># ToTensor() should be the last one of the transforms.</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">])</span>
+
+<span class="c1"># We don&#39;t need augmentations in testing and validation.</span>
+<span class="c1"># All we need here is to resize the PIL image and transform it into Tensor.</span>
+<span class="n">test_tfm</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Batch size for training, validation, and testing.</span>
+<span class="c1"># A greater batch size usually gives a more stable gradient.</span>
+<span class="c1"># But the GPU memory is limited, so please adjust it carefully.</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c1"># Construct datasets.</span>
+<span class="c1"># The argument &quot;loader&quot; tells how torchvision reads the data.</span>
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">DatasetFolder</span><span class="p">(</span><span class="s2">&quot;food-11/training/labeled&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">train_tfm</span><span class="p">)</span>
+<span class="n">valid_set</span> <span class="o">=</span> <span class="n">DatasetFolder</span><span class="p">(</span><span class="s2">&quot;food-11/validation&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">test_tfm</span><span class="p">)</span>
+<span class="n">unlabeled_set</span> <span class="o">=</span> <span class="n">DatasetFolder</span><span class="p">(</span><span class="s2">&quot;food-11/training/unlabeled&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">train_tfm</span><span class="p">)</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">DatasetFolder</span><span class="p">(</span><span class="s2">&quot;food-11/testing&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">test_tfm</span><span class="p">)</span>
+
+<span class="c1"># Construct data loaders.</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">valid_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model">
+<h2><strong>Model</strong><a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+<p>The basic model here is simply a stack of convolutional layers followed by some fully-connected layers.</p>
+<p>Since there are three channels for a color image (RGB), the input channels of the network must be three.
+In each convolutional layer, typically the channels of inputs grow, while the height and width shrink (or remain unchanged, according to some hyperparameters like stride and padding).</p>
+<p>Before fed into fully-connected layers, the feature map must be flattened into a single one-dimensional vector (for each image).
+These features are then transformed by the fully-connected layers, and finally, we obtain the “logits” for each class.</p>
+<div class="section" id="warning-you-must-know">
+<h3><strong>WARNING – You Must Know</strong><a class="headerlink" href="#warning-you-must-know" title="Permalink to this headline">¶</a></h3>
+<p>You are free to modify the model architecture here for further improvement.
+However, if you want to use some well-known architectures such as ResNet50, please make sure <strong>NOT</strong> to load the pre-trained weights.
+Using such pre-trained models is considered cheating and therefore you will be punished.
+Similarly, it is your responsibility to make sure no pre-trained weights are used if you use <strong>torch.hub</strong> to load any modules.</p>
+<p>For example, if you use ResNet-18 as your model:</p>
+<p>model = torchvision.models.resnet18(pretrained=<strong>False</strong>) → This is fine.</p>
+<p>model = torchvision.models.resnet18(pretrained=<strong>True</strong>)  → This is <strong>NOT</strong> allowed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Classifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Classifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># The arguments for commonly used modules:</span>
+        <span class="c1"># torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)</span>
+        <span class="c1"># torch.nn.MaxPool2d(kernel_size, stride, padding)</span>
+
+        <span class="c1"># input image size: [3, 128, 128]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cnn_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># input (x): [batch_size, 3, 128, 128]</span>
+        <span class="c1"># output: [batch_size, 11]</span>
+
+        <span class="c1"># Extract features by convolutional layers.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cnn_layers</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># The extracted feature map must be flatten before going to fully-connected layers.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># The features are transformed by fully-connected layers to obtain the final logits.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_layers</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h2><strong>Training</strong><a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>You can finish supervised learning by simply running the provided code without any modification.</p>
+<p>The function “get_pseudo_labels” is used for semi-supervised learning.
+It is expected to get better performance if you use unlabeled data for semi-supervised learning.
+However, you have to implement the function on your own and need to adjust several hyperparameters manually.</p>
+<p>For more details about semi-supervised learning, please refer to <a class="reference external" href="https://speech.ee.ntu.edu.tw/~tlkagk/courses/ML_2016/Lecture/semi%20(v3).pdf">Prof. Lee’s slides</a>.</p>
+<p>Again, please notice that utilizing external data (or pre-trained model) for training is <strong>prohibited</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pseudo_labels</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.65</span><span class="p">):</span>
+    <span class="c1"># This functions generates pseudo-labels of a dataset using given model.</span>
+    <span class="c1"># It returns an instance of DatasetFolder containing images whose prediction confidences exceed a given threshold.</span>
+    <span class="c1"># You are NOT allowed to use any models trained on external data for pseudo-labeling.</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+
+    <span class="c1"># Construct a data loader.</span>
+    <span class="n">data_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Make sure the model is in eval mode.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="c1"># Define softmax function.</span>
+    <span class="n">softmax</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over the dataset by batches.</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+        <span class="n">img</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">batch</span>
+
+        <span class="c1"># Forward the data</span>
+        <span class="c1"># Using torch.no_grad() accelerates the forward process.</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+        <span class="c1"># Obtain the probability distributions by applying softmax on logits.</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
+
+        <span class="c1"># ---------- TODO ----------</span>
+        <span class="c1"># Filter the data and construct a new dataset.</span>
+
+    <span class="c1"># # Turn off the eval mode.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;cuda&quot; only when GPUs are available.</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+
+<span class="c1"># Initialize a model, and put it on the device specified.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Classifier</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+
+<span class="c1"># For the classification task, we use cross-entropy as the measurement of performance.</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<span class="c1"># Initialize optimizer, you may fine-tune some hyperparameters such as learning rate on your own.</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0003</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+
+<span class="c1"># The number of training epochs.</span>
+<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">80</span>
+
+<span class="c1"># Whether to do semi-supervised learning.</span>
+<span class="n">do_semi</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+    <span class="c1"># ---------- TODO ----------</span>
+    <span class="c1"># In each epoch, relabel the unlabeled dataset for semi-supervised learning.</span>
+    <span class="c1"># Then you can combine the labeled dataset and pseudo-labeled dataset for the training.</span>
+    <span class="k">if</span> <span class="n">do_semi</span><span class="p">:</span>
+        <span class="c1"># Obtain pseudo-labels for unlabeled data using trained model.</span>
+        <span class="n">pseudo_set</span> <span class="o">=</span> <span class="n">get_pseudo_labels</span><span class="p">(</span><span class="n">unlabeled_set</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+
+        <span class="c1"># Construct a new dataset and a data loader for training.</span>
+        <span class="c1"># This is used in semi-supervised learning only.</span>
+        <span class="n">concat_dataset</span> <span class="o">=</span> <span class="n">ConcatDataset</span><span class="p">([</span><span class="n">train_set</span><span class="p">,</span> <span class="n">pseudo_set</span><span class="p">])</span>
+        <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">concat_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># ---------- Training ----------</span>
+    <span class="c1"># Make sure the model is in train mode before training.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+    <span class="c1"># These are used to record information in training.</span>
+    <span class="n">train_loss</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">train_accs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Iterate the training set by batches.</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+
+        <span class="c1"># A batch consists of image data and corresponding labels.</span>
+        <span class="n">imgs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span>
+
+        <span class="c1"># Forward the data. (Make sure data and model are on the same device.)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+        <span class="c1"># Calculate the cross-entropy loss.</span>
+        <span class="c1"># We don&#39;t need to apply softmax before computing cross-entropy as it is done automatically.</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+        <span class="c1"># Gradients stored in the parameters in the previous step should be cleared out first.</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+        <span class="c1"># Compute the gradients for parameters.</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="c1"># Clip the gradient norms for stable training.</span>
+        <span class="n">grad_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_norm_</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">max_norm</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Update the parameters with computed gradients.</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="c1"># Compute the accuracy for current batch.</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="c1"># Record the loss and accuracy.</span>
+        <span class="n">train_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="n">train_accs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+
+    <span class="c1"># The average loss and accuracy of the training set is the average of the recorded values.</span>
+    <span class="n">train_loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+    <span class="n">train_acc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">train_accs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_accs</span><span class="p">)</span>
+
+    <span class="c1"># Print the information.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[ Train | </span><span class="si">{</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_epochs</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2"> ] loss = </span><span class="si">{</span><span class="n">train_loss</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">, acc = </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ---------- Validation ----------</span>
+    <span class="c1"># Make sure the model is in eval mode so that some modules like dropout are disabled and work normally.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="c1"># These are used to record information in validation.</span>
+    <span class="n">valid_loss</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_accs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Iterate the validation set by batches.</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">valid_loader</span><span class="p">):</span>
+
+        <span class="c1"># A batch consists of image data and corresponding labels.</span>
+        <span class="n">imgs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span>
+
+        <span class="c1"># We don&#39;t need gradient in validation.</span>
+        <span class="c1"># Using torch.no_grad() accelerates the forward process.</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+          <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+        <span class="c1"># We can still compute the loss (but not the gradient).</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+        <span class="c1"># Compute the accuracy for current batch.</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="c1"># Record the loss and accuracy.</span>
+        <span class="n">valid_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="n">valid_accs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+
+    <span class="c1"># The average loss and accuracy for entire validation set is the average of the recorded values.</span>
+    <span class="n">valid_loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">valid_loss</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_loss</span><span class="p">)</span>
+    <span class="n">valid_acc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">valid_accs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_accs</span><span class="p">)</span>
+
+    <span class="c1"># Print the information.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[ Valid | </span><span class="si">{</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_epochs</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2"> ] loss = </span><span class="si">{</span><span class="n">valid_loss</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">, acc = </span><span class="si">{</span><span class="n">valid_acc</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing">
+<h2><strong>Testing</strong><a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>For inference, we need to make sure the model is in eval mode, and the order of the dataset should not be shuffled (“shuffle=False” in test_loader).</p>
+<p>Last but not least, don’t forget to save the predictions into a single CSV file.
+The format of CSV file should follow the rules mentioned in the slides.</p>
+<div class="section" id="warning-keep-in-mind">
+<h3><strong>WARNING – Keep in Mind</strong><a class="headerlink" href="#warning-keep-in-mind" title="Permalink to this headline">¶</a></h3>
+<p>Cheating includes but not limited to:</p>
+<ol class="simple">
+<li><p>using testing labels,</p></li>
+<li><p>submitting results to previous Kaggle competitions,</p></li>
+<li><p>sharing predictions with others,</p></li>
+<li><p>copying codes from any creatures on Earth,</p></li>
+<li><p>asking other people to do it for you.</p></li>
+</ol>
+<p>Any violations bring you punishments from getting a discount on the final grade to failing the course.</p>
+<p>It is your responsibility to check whether your code violates the rules.
+When citing codes from the Internet, you should know what these codes exactly do.
+You will <strong>NOT</strong> be tolerated if you break the rule and claim you don’t know what these codes do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure the model is in eval mode.</span>
+<span class="c1"># Some modules like Dropout or BatchNorm affect if the model is in training mode.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="c1"># Initialize a list to store the predictions.</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterate the testing set by batches.</span>
+<span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_loader</span><span class="p">):</span>
+    <span class="c1"># A batch consists of image data and corresponding labels.</span>
+    <span class="c1"># But here the variable &quot;labels&quot; is useless since we do not have the ground-truth.</span>
+    <span class="c1"># If printing out the labels, you will find that it is always 0.</span>
+    <span class="c1"># This is because the wrapper (DatasetFolder) returns images and labels for each batch,</span>
+    <span class="c1"># so we have to create fake labels to make it work normally.</span>
+    <span class="n">imgs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span>
+
+    <span class="c1"># We don&#39;t need gradient in testing, and we don&#39;t even have labels to compute loss.</span>
+    <span class="c1"># Using torch.no_grad() accelerates the forward process.</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+    <span class="c1"># Take the class with greatest logit as prediction and record it.</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save predictions into the file.</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;predict.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># The first row must be &quot;Id, Category&quot;</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Id,Category</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># For the rest of the rows, each image id corresponds to a predicted class.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span>  <span class="nb">enumerate</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
+         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machine_learning/Machine Learning 2021(李宏毅)"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By CancerM Qiao<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
