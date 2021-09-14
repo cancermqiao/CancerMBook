@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # **Homework 1: COVID-19 Cases Prediction (Regression)**
+# # Homework 1: COVID-19 Cases Prediction (Regression)
 
 # Author: Heng-Jui Chang
 # 
@@ -15,9 +15,6 @@
 # * Solve a regression problem with deep neural networks (DNN).
 # * Understand basic DNN training tips.
 # * Get familiar with PyTorch.
-# 
-# If any questions, please contact the TAs via TA hours, NTU COOL, or email.
-# 
 
 # ## 1. Download Data
 # 
@@ -36,7 +33,7 @@ tt_path = 'data/covid.test.csv'   # path to testing data
 
 # ## 2. Import Some Packages
 
-# In[3]:
+# In[2]:
 
 
 # PyTorch
@@ -250,9 +247,9 @@ class NeuralNet(nn.Module):
         return self.criterion(pred, target)
 
 
-# # **Train/Dev/Test**
+# ## 6. Train/Dev/Test
 
-# ## **Training**
+# ### 6.1 Training
 
 # In[22]:
 
@@ -303,7 +300,7 @@ def train(tr_set, dv_set, model, config, device):
     return min_mse, loss_record
 
 
-# ## **Validation**
+# ### 6.2 Validation
 
 # In[23]:
 
@@ -322,7 +319,7 @@ def dev(dv_set, model, device):
     return total_loss
 
 
-# ## **Testing**
+# ### 6.3 Testing
 
 # In[24]:
 
@@ -339,7 +336,7 @@ def test(tt_set, model, device):
     return preds
 
 
-# # **Setup Hyper-parameters**
+# ## 7. Setup Hyper-parameters
 # 
 # `config` contains hyper-parameters for training and the path to save your model.
 
@@ -364,7 +361,7 @@ config = {
 }
 
 
-# # **Load data and model**
+# ## 8. Load data and model
 
 # In[27]:
 
@@ -380,7 +377,7 @@ tt_set = prep_dataloader(tt_path, 'test', config['batch_size'], target_only=targ
 model = NeuralNet(tr_set.dataset.dim).to(device)  # Construct model and move to device
 
 
-# # **Start Training!**
+# ## 9. Start Training!
 
 # In[29]:
 
@@ -404,7 +401,7 @@ model.load_state_dict(ckpt)
 plot_pred(dv_set, model, device)  # Show prediction on the validation set
 
 
-# # **Testing**
+# ## 10. Testing
 # The predictions of your model on testing set will be stored at `pred.csv`.
 
 # In[32]:
@@ -423,31 +420,25 @@ preds = test(tt_set, model, device)  # predict COVID-19 cases with your model
 save_pred(preds, 'pred.csv')         # save prediction file to pred.csv
 
 
-# # **Hints**
+# ## 11. Hints
 # 
-# ## **Simple Baseline**
+# ### 11.1 Simple Baseline
 # * Run sample code
 # 
-# ## **Medium Baseline**
+# ### 11.2 Medium Baseline
 # * Feature selection: 40 states + 2 `tested_positive` (`TODO` in dataset)
 # 
-# ## **Strong Baseline**
+# ### 11.3 Strong Baseline
 # * Feature selection (what other features are useful?)
 # * DNN architecture (layers? dimension? activation function?)
 # * Training (mini-batch? optimizer? learning rate?)
 # * L2 regularization
 # * There are some mistakes in the sample code, can you find them?
 
-# # **Reference**
+# ## 12. Reference
 # This code is completely written by Heng-Jui Chang @ NTUEE.  
 # Copying or reusing this code is required to specify the original author. 
 # 
 # E.g.  
 # Source: Heng-Jui Chang @ NTUEE (https://github.com/ga642381/ML2021-Spring/blob/main/HW01/HW01.ipynb)
 # 
-
-# In[ ]:
-
-
-
-

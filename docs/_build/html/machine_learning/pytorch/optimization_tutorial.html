@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. Optimizing Model Parameters &#8212; CancerM Book</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://jupyterbook.org/machine_learning/pytorch/optimization_tutorial.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7. Save and Load the Model" href="saveloadrun_tutorial.html" />
+    <link rel="prev" title="5. Automatic Differentiation with Torch.autograd" href="autogradqs_tutorial.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CancerM Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  机器学习(Machine Learning)
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/overview.html">
+   Machine Learning 2021(李宏毅)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
+     Homework 1: COVID-19 Cases Prediction (Regression)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
+     常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   Pytorch Tutorial
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="quickstart_tutorial.html">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="saveloadrun_tutorial.html">
+     7. Save and Load the Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  强化学习(Reinforcement Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
+   UCL Course on RL
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction.html">
+     Lecture 1: Introduction to Reinforcement Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp.html">
+     Lecture 2: Markov Decision Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  因果推断(Causal Inference)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
+   Introduction to Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch1.html">
+     1. Motivation: Why You Might Care
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
+     2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch3.html">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  已读文章(Paper Read)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
+   Here’s my sample title
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/learning_MDPs_from_features.html">
+     Here’s my sample title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/notebooks.html">
+     Jupyter Notebook files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/machine_learning/pytorch/optimization_tutorial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fmachine_learning/pytorch/optimization_tutorial.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/machine_learning/pytorch/optimization_tutorial.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cancermqiao/CancerMBook.git/master?urlpath=tree/docs/machine_learning/pytorch/optimization_tutorial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/cancermqiao/CancerMBook.git/blob/master/docs/machine_learning/pytorch/optimization_tutorial.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisite-code">
+   Prerequisite Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameters">
+   Hyperparameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-loop">
+   Optimization Loop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-function">
+     Loss Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizer">
+     Optimizer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-implementation">
+   Full Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further Reading
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="optimizing-model-parameters">
+<h1>6. Optimizing Model Parameters<a class="headerlink" href="#optimizing-model-parameters" title="Permalink to this headline">¶</a></h1>
+<p>Now that we have a model and data it’s time to train, validate and test our model by optimizing its parameters on
+our data. Training a model is an iterative process; in each iteration (called an <em>epoch</em>) the model makes a guess about the output, calculates
+the error in its guess (<em>loss</em>), collects the derivatives of the error with respect to its parameters (as we saw in
+the <a class="reference internal" href="autogradqs_tutorial.html"><span class="doc std std-doc">previous section</span></a>, and <strong>optimizes</strong> these parameters using gradient descent. For a more
+detailed walkthrough of this process, check out this video on <a class="reference external" href="https://www.youtube.com/watch?v=tIeHLnjs5U8">backpropagation from 3Blue1Brown</a></p>
+<div class="section" id="prerequisite-code">
+<h2>Prerequisite Code<a class="headerlink" href="#prerequisite-code" title="Permalink to this headline">¶</a></h2>
+<p>We load the code from the previous sections on <a class="reference internal" href="data_tutorial.html"><span class="doc std std-doc">Datasets &amp; DataLoaders</span></a>
+and <a class="reference internal" href="buildmodel_tutorial.html"><span class="doc std std-doc">Build Model</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="n">ToTensor</span><span class="p">,</span> <span class="n">Lambda</span>
+
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="c1">#             nn.ReLU()</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hyperparameters">
+<h2>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this headline">¶</a></h2>
+<p>Hyperparameters are adjustable parameters that let you control the model optimization process.
+Different hyperparameter values can impact model training and convergence rates
+(<a class="reference external" href="https://pytorch.org/tutorials/beginner/hyperparameter_tuning_tutorial.html">read more</a> about hyperparameter tuning)</p>
+<p>We define the following hyperparameters for training:</p>
+<ul class="simple">
+<li><p><strong>Number of Epochs</strong> - the number times to iterate over the dataset</p></li>
+<li><p><strong>Batch Size</strong> - the number of data samples propagated through the network before the parameters are updated</p></li>
+<li><p><strong>Learning Rate</strong> - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optimization-loop">
+<h2>Optimization Loop<a class="headerlink" href="#optimization-loop" title="Permalink to this headline">¶</a></h2>
+<p>Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each
+iteration of the optimization loop is called an <strong>epoch</strong>.</p>
+<p>Each epoch consists of two main parts:</p>
+<ul class="simple">
+<li><p><strong>The Train Loop</strong> - iterate over the training dataset and try to converge to optimal parameters.</p></li>
+<li><p><strong>The Validation/Test Loop</strong> - iterate over the test dataset to check if model performance is improving.</p></li>
+</ul>
+<p>Let’s briefly familiarize ourselves with some of the concepts used in the training loop. Jump ahead to
+see the <a class="reference internal" href="#full-impl-label"><span class="std std-ref">Full Implementation</span></a> of the optimization loop.</p>
+<div class="section" id="loss-function">
+<h3>Loss Function<a class="headerlink" href="#loss-function" title="Permalink to this headline">¶</a></h3>
+<p>When presented with some training data, our untrained network is likely not to give the correct
+answer. <strong>Loss function</strong> measures the degree of dissimilarity of obtained result to the target value,
+and it is the loss function that we want to minimize during training. To calculate the loss we make a
+prediction using the inputs of our given data sample and compare it against the true data label value.</p>
+<p>Common loss functions include <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html#torch.nn.MSELoss">nn.MSELoss</a> (Mean Square Error) for regression tasks, and
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html#torch.nn.NLLLoss">nn.NLLLoss</a> (Negative Log Likelihood) for classification.
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss">nn.CrossEntropyLoss</a> combines <code class="docutils literal notranslate"><span class="pre">nn.LogSoftmax</span></code> and <code class="docutils literal notranslate"><span class="pre">nn.NLLLoss</span></code>.</p>
+<p>We pass our model’s output logits to <code class="docutils literal notranslate"><span class="pre">nn.CrossEntropyLoss</span></code>, which will normalize the logits and compute the prediction error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the loss function</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optimizer">
+<h3>Optimizer<a class="headerlink" href="#optimizer" title="Permalink to this headline">¶</a></h3>
+<p>Optimization is the process of adjusting model parameters to reduce model error in each training step. <strong>Optimization algorithms</strong> define how this process is performed (in this example we use Stochastic Gradient Descent).
+All optimization logic is encapsulated in  the <code class="docutils literal notranslate"><span class="pre">optimizer</span></code> object. Here, we use the SGD optimizer; additionally, there are many <a class="reference external" href="https://pytorch.org/docs/stable/optim.html">different optimizers</a> available in PyTorch such as ADAM and RMSProp, that work better for different kinds of models and data.</p>
+<p>We initialize the optimizer by registering the model’s parameters that need to be trained, and passing in the learning rate hyperparameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inside the training loop, optimization happens in three steps:</p>
+<ul class="simple">
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">optimizer.zero_grad()</span></code> to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration.</p></li>
+<li><p>Backpropagate the prediction loss with a call to <code class="docutils literal notranslate"><span class="pre">loss.backwards()</span></code>. PyTorch deposits the gradients of the loss w.r.t. each parameter.</p></li>
+<li><p>Once we have our gradients, we call <code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code> to adjust the parameters by the gradients collected in the backward pass.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="full-implementation">
+<span id="full-impl-label"></span><h2>Full Implementation<a class="headerlink" href="#full-implementation" title="Permalink to this headline">¶</a></h2>
+<p>We define <code class="docutils literal notranslate"><span class="pre">train_loop</span></code> that loops over our optimization code, and <code class="docutils literal notranslate"><span class="pre">test_loop</span></code> that
+evaluates the model’s performance against our test data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_loop</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">batch</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+        <span class="c1"># Compute prediction and loss</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Backpropagation</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">batch</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">loss</span><span class="p">,</span> <span class="n">current</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">batch</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">&gt;7f</span><span class="si">}</span><span class="s2">  [</span><span class="si">{</span><span class="n">current</span><span class="si">:</span><span class="s2">&gt;5d</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">&gt;5d</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_loop</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">num_batches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span>
+    <span class="n">test_loss</span><span class="p">,</span> <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="n">test_loss</span> <span class="o">/=</span> <span class="n">num_batches</span>
+    <span class="n">correct</span> <span class="o">/=</span> <span class="n">size</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Error: </span><span class="se">\n</span><span class="s2"> Accuracy: </span><span class="si">{</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">correct</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;0.1f</span><span class="si">}</span><span class="s2">%, Avg loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">&gt;8f</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We initialize the loss function and optimizer, and pass it to <code class="docutils literal notranslate"><span class="pre">train_loop</span></code> and <code class="docutils literal notranslate"><span class="pre">test_loop</span></code>.
+Feel free to increase the number of epochs to track the model’s improving performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">train_loop</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+    <span class="n">test_loop</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+-------------------------------
+loss: 2.294938  [    0/60000]
+loss: 2.280527  [ 6400/60000]
+loss: 2.262815  [12800/60000]
+loss: 2.264549  [19200/60000]
+loss: 2.243164  [25600/60000]
+loss: 2.213948  [32000/60000]
+loss: 2.232795  [38400/60000]
+loss: 2.189659  [44800/60000]
+loss: 2.189511  [51200/60000]
+loss: 2.166109  [57600/60000]
+Test Error: 
+ Accuracy: 43.4%, Avg loss: 2.151356 
+
+Epoch 2
+-------------------------------
+loss: 2.156618  [    0/60000]
+loss: 2.140461  [ 6400/60000]
+loss: 2.082902  [12800/60000]
+loss: 2.110146  [19200/60000]
+loss: 2.043524  [25600/60000]
+loss: 1.985083  [32000/60000]
+loss: 2.030135  [38400/60000]
+loss: 1.934099  [44800/60000]
+loss: 1.944669  [51200/60000]
+loss: 1.888638  [57600/60000]
+Test Error: 
+ Accuracy: 55.8%, Avg loss: 1.871117 
+
+Epoch 3
+-------------------------------
+loss: 1.892344  [    0/60000]
+loss: 1.860251  [ 6400/60000]
+loss: 1.744884  [12800/60000]
+loss: 1.804176  [19200/60000]
+loss: 1.674986  [25600/60000]
+loss: 1.626091  [32000/60000]
+loss: 1.669546  [38400/60000]
+loss: 1.557391  [44800/60000]
+loss: 1.585864  [51200/60000]
+loss: 1.494968  [57600/60000]
+Test Error: 
+ Accuracy: 62.4%, Avg loss: 1.502675 
+
+Epoch 4
+-------------------------------
+loss: 1.557781  [    0/60000]
+loss: 1.529332  [ 6400/60000]
+loss: 1.386564  [12800/60000]
+loss: 1.463500  [19200/60000]
+loss: 1.333275  [25600/60000]
+loss: 1.325118  [32000/60000]
+loss: 1.350188  [38400/60000]
+loss: 1.273686  [44800/60000]
+loss: 1.307562  [51200/60000]
+loss: 1.213989  [57600/60000]
+Test Error: 
+ Accuracy: 63.5%, Avg loss: 1.236712 
+
+Epoch 5
+-------------------------------
+loss: 1.304882  [    0/60000]
+loss: 1.294935  [ 6400/60000]
+loss: 1.139759  [12800/60000]
+loss: 1.241997  [19200/60000]
+loss: 1.109784  [25600/60000]
+loss: 1.128392  [32000/60000]
+loss: 1.158092  [38400/60000]
+loss: 1.098327  [44800/60000]
+loss: 1.136934  [51200/60000]
+loss: 1.056412  [57600/60000]
+Test Error: 
+ Accuracy: 64.5%, Avg loss: 1.073849 
+
+Epoch 6
+-------------------------------
+loss: 1.138120  [    0/60000]
+loss: 1.147660  [ 6400/60000]
+loss: 0.977653  [12800/60000]
+loss: 1.106062  [19200/60000]
+loss: 0.973572  [25600/60000]
+loss: 0.998740  [32000/60000]
+loss: 1.043806  [38400/60000]
+loss: 0.988591  [44800/60000]
+loss: 1.027979  [51200/60000]
+loss: 0.961286  [57600/60000]
+Test Error: 
+ Accuracy: 65.9%, Avg loss: 0.970704 
+
+Epoch 7
+-------------------------------
+loss: 1.024368  [    0/60000]
+loss: 1.053657  [ 6400/60000]
+loss: 0.867385  [12800/60000]
+loss: 1.016806  [19200/60000]
+loss: 0.888662  [25600/60000]
+loss: 0.908948  [32000/60000]
+loss: 0.971003  [38400/60000]
+loss: 0.917637  [44800/60000]
+loss: 0.953321  [51200/60000]
+loss: 0.898113  [57600/60000]
+Test Error: 
+ Accuracy: 67.0%, Avg loss: 0.900903 
+
+Epoch 8
+-------------------------------
+loss: 0.941603  [    0/60000]
+loss: 0.988610  [ 6400/60000]
+loss: 0.788530  [12800/60000]
+loss: 0.953425  [19200/60000]
+loss: 0.832180  [25600/60000]
+loss: 0.843603  [32000/60000]
+loss: 0.920341  [38400/60000]
+loss: 0.870044  [44800/60000]
+loss: 0.899377  [51200/60000]
+loss: 0.852395  [57600/60000]
+Test Error: 
+ Accuracy: 68.3%, Avg loss: 0.850640 
+
+Epoch 9
+-------------------------------
+loss: 0.877742  [    0/60000]
+loss: 0.939588  [ 6400/60000]
+loss: 0.729146  [12800/60000]
+loss: 0.905921  [19200/60000]
+loss: 0.791855  [25600/60000]
+loss: 0.794213  [32000/60000]
+loss: 0.882121  [38400/60000]
+loss: 0.836328  [44800/60000]
+loss: 0.858331  [51200/60000]
+loss: 0.817055  [57600/60000]
+Test Error: 
+ Accuracy: 69.6%, Avg loss: 0.812315 
+
+Epoch 10
+-------------------------------
+loss: 0.826008  [    0/60000]
+loss: 0.899814  [ 6400/60000]
+loss: 0.682386  [12800/60000]
+loss: 0.868738  [19200/60000]
+loss: 0.761210  [25600/60000]
+loss: 0.755826  [32000/60000]
+loss: 0.850978  [38400/60000]
+loss: 0.810806  [44800/60000]
+loss: 0.825903  [51200/60000]
+loss: 0.788465  [57600/60000]
+Test Error: 
+ Accuracy: 70.7%, Avg loss: 0.781631 
+
+Done!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">Loss Functions</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/optim.html">torch.optim</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/tutorials/recipes/recipes/warmstarting_model_using_parameters_from_a_different_model.html">Warmstart Training a Model</a></p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "cancermqiao/CancerMBook.git",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machine_learning/pytorch"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="autogradqs_tutorial.html" title="previous page">5. Automatic Differentiation with <code class="docutils literal notranslate"><span class="pre">Torch.autograd</span></code></a>
+    <a class='right-next' id="next-link" href="saveloadrun_tutorial.html" title="next page">7. Save and Load the Model</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By CancerM Qiao<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </body>
+</html>

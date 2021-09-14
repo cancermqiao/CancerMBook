@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,19 +41,21 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://jupyterbook.org/papers/reinforcement_learning/overview.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Here’s my sample title" href="learning_MDPs_from_features.html" />
-    <link rel="prev" title="2 Potential Outcomes" href="../../causal_inference/introduction_to_causal_inference/ch2.html" />
+    <link rel="prev" title="第K大的数" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -80,14 +83,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing_page.html">
-   欢迎来到CancerM Book
-  </a>
- </li>
-</ul>
-<p class="caption">
+        <p class="caption">
  <span class="caption-text">
   机器学习(Machine Learning)
  </span>
@@ -105,14 +101,69 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
-     <strong>
-      Homework 1: COVID-19 Cases Prediction (Regression)
-     </strong>
+     Homework 1: COVID-19 Cases Prediction (Regression)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
      常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../machine_learning/pytorch/intro.html">
+   Pytorch Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/quickstart_tutorial.html">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/optimization_tutorial.html">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/saveloadrun_tutorial.html">
+     7. Save and Load the Model
     </a>
    </li>
   </ul>
@@ -128,8 +179,8 @@
   <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
    UCL Course on RL
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -157,8 +208,8 @@
   <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
    Introduction to Causal Inference
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -171,6 +222,45 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
      2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch3.html">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
     </a>
    </li>
   </ul>
@@ -186,8 +276,8 @@
   <a class="current reference internal" href="#">
    Here’s my sample title
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -256,6 +346,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fpapers/reinforcement_learning/overview.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/papers/reinforcement_learning/overview.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -306,7 +414,7 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "cancermqiao/CancerMBook.git",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -327,7 +435,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../../causal_inference/introduction_to_causal_inference/ch2.html" title="previous page">2 Potential Outcomes</a>
+    <a class='left-prev' id="prev-link" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html" title="previous page">第K大的数</a>
     <a class='right-next' id="next-link" href="learning_MDPs_from_features.html" title="next page">Here’s my sample title</a>
 
         </div>
@@ -353,5 +461,15 @@
   <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </body>
 </html>

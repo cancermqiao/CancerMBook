@@ -16,8 +16,8 @@ import pandas as pd
 # ### 1.1 表达式
 # 
 # $$
-# f(x)=\frac{1}{1+e^{-x}}\tag{1}
-# $$
+# f(x)=\frac{1}{1+e^{-x}}
+# $$ (sigmoid_function)
 # 
 # $f(x)$的取值范围为$(0, 1)$
 # 
@@ -75,16 +75,20 @@ alt.Chart(data, title="Sigmoid Function").mark_line().encode(
 # ## 2. ReLU
 # 
 # ### 2.1 表达式
-# $$f(x)=\begin{cases} 
+# \begin{align}
+# f(x)=\begin{cases} 
 # x,  & \mbox{if }x\gt 0 \\
 # 0, & \mbox{if }x\le 0
-# \end{cases}\tag{3}$$
+# \end{cases}
+# \end{align} (relu_function)
 # 
 # ### 2.2 导数式
-# $$f^\prime(x)=\begin{cases} 
+# \begin{align}
+# f^\prime(x)=\begin{cases} 
 # 1,  & \mbox{if }x\gt 0 \\
 # 0, & \mbox{if }x\le 0
-# \end{cases}\tag{4}$$
+# \end{cases}
+# \end{align} (relu_derivative1)
 
 # In[3]:
 
@@ -134,11 +138,15 @@ alt.Chart(data, title="ReLU Function").mark_line().encode(
 # 
 # - 表达式
 # 
-# $$f(x)=log(1+e^x)\tag{5}$$
+# $$
+# f(x)=log(1+e^x)
+# $$ (softplus_function)
 # 
 # - 导数式
 # 
-# $$f^\prime(x)=\frac{e^x}{1+e^x}\tag{6}$$
+# $$
+# f^\prime(x)=\frac{e^x}{1+e^x}
+# $$ (softplus_derivative)
 # 
 
 # In[4]:
@@ -185,19 +193,23 @@ alt.Chart(data, title="SoftPlus Function").mark_line().encode(
 # 
 # 1. Leaky ReLU
 # 
-# $$f(x)=\begin{cases} 
+# \begin{align}
+# f(x)=\begin{cases} 
 # x,  & \mbox{if }x\gt 0 \\
 # 0.01x, & \mbox{if }x\le 0
-# \end{cases}\tag{7}$$
+# \end{cases}
+# \end{align} (leaky_relu_function)
 # 
 # 为什么是0.01?
 # 
 # 2. Parametric ReLU
 # 
-# $$f(x)=\begin{cases} 
+# \begin{align}
+# f(x)=\begin{cases} 
 # x,  & \mbox{if }x\gt 0 \\
 # \alpha\cdot x, & \mbox{if }x\le 0
-# \end{cases}\tag{8}$$
+# \end{cases}
+# \end{align} (parametric_relu_function)
 # 
 # $\alpha$当作参数被训练
 
@@ -205,7 +217,9 @@ alt.Chart(data, title="SoftPlus Function").mark_line().encode(
 # 
 # ### 3.1 表达式
 # 
-# $$z=max\left\{z_1, z_2, ..., z_k\right\}\tag{9}$$
+# $$
+# z=max\left\{z_1, z_2, ..., z_k\right\}
+# $$ (maxout_function)
 # 
 # ```
 # ReLU是一种特殊情况
@@ -258,7 +272,9 @@ alt.Chart(data, title="Maxout Function").mark_line().encode(
 
 # ### 4.1 表达式
 # 
-# $$f(x_i)=\frac{e^{x_i}}{\sum_j{e^{x_j}}}\tag{10}$$
+# $$
+# f(x_i)=\frac{e^{x_i}}{\sum_j{e^{x_j}}}
+# $$ (softmax_function)
 # 
 # **特性：**
 # 
@@ -274,21 +290,15 @@ alt.Chart(data, title="Maxout Function").mark_line().encode(
 # ### 4.2 导数式
 # 
 # - $x_i$自身微分
-# $$
+# \begin{align}
 # \begin{split}\frac{\partial{f(x_i)}}{\partial{x_i}}&=\frac{e^{x_i}\cdot \sum_j{e^{x_j}} - e^{x_i}\cdot e^{x_i}}{\left(\sum_j{e^{x_j}}\right)^2} \\
 # &=f(x_i)\cdot\left(1-f(x_i)\right)
-# \end{split}\tag{11}
-# $$
+# \end{split}
+# \end{align} (softmax_derivative1)
 # 
 # - 当$i\ne k$时
-# $$
+# \begin{align}
 # \begin{split}\frac{\partial{f(x_i)}}{\partial{x_k}}&=-e^{x_i}\cdot\frac{e^{x_k}}{\left(\sum_j{e^{x_j}}\right)^2} \\
 # &=-f(x_i)\cdot f(x_k)
-# \end{split}\tag{11}
-# $$
-
-# In[ ]:
-
-
-
-
+# \end{split}
+# \end{align} (softmax_derivative1)

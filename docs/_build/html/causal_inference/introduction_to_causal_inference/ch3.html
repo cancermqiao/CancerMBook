@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. The Flow of Association and Causation in Graphs &#8212; CancerM Book</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://jupyterbook.org/causal_inference/introduction_to_causal_inference/ch3.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Causal Models" href="ch4.html" />
+    <link rel="prev" title="2 Potential Outcomes" href="ch2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CancerM Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  机器学习(Machine Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/overview.html">
+   Machine Learning 2021(李宏毅)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
+     Homework 1: COVID-19 Cases Prediction (Regression)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
+     常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../machine_learning/pytorch/intro.html">
+   Pytorch Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/quickstart_tutorial.html">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/optimization_tutorial.html">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/saveloadrun_tutorial.html">
+     7. Save and Load the Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  强化学习(Reinforcement Learning)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
+   UCL Course on RL
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/introduction.html">
+     Lecture 1: Introduction to Reinforcement Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/mdp.html">
+     Lecture 2: Markov Decision Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  因果推断(Causal Inference)
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="overview.html">
+   Introduction to Causal Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ch1.html">
+     1. Motivation: Why You Might Care
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ch2.html">
+     2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  已读文章(Paper Read)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
+   Here’s my sample title
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/learning_MDPs_from_features.html">
+     Here’s my sample title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../papers/reinforcement_learning/notebooks.html">
+     Jupyter Notebook files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/causal_inference/introduction_to_causal_inference/ch3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fcausal_inference/introduction_to_causal_inference/ch3.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/causal_inference/introduction_to_causal_inference/ch3.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cancermqiao/CancerMBook.git/master?urlpath=tree/docs/causal_inference/introduction_to_causal_inference/ch3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/cancermqiao/CancerMBook.git/blob/master/docs/causal_inference/introduction_to_causal_inference/ch3.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-terminology">
+   3.1 Graph Terminology
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-networks">
+   3.2 Bayesian Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#causal-graphs">
+   3.3 Causal Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-node-graphs-and-graphical-building-blocks">
+   3.4 Two-Node Graphs and Graphical Building Blocks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chains-and-forks">
+   3.5 Chains and Forks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#association">
+     3.5.1 相关性（Association）
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#chains">
+       Chains
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forks">
+       Forks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#causation">
+     3.5.2 因果性（Causation）
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#colliders-and-their-descendants">
+   3.6 Colliders and their Descendants
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#immorality-colliders">
+     3.6.1 immorality(colliders)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#good-looking-men-are-jerks">
+     3.6.2 Good-Looking Men are Jerks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#berksons-paradox">
+       Berkson’s paradox
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-example">
+     3.6.3 Numerical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#descendants-of-colliders">
+     3.6.4 Descendants of Colliders
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-separation">
+   3.7 d-separation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   练习
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flow-of-association-and-causation">
+   3.8 Flow of Association and Causation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.8.1 d-separation说明相关性是因果性
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-flow-of-association-and-causation-in-graphs">
+<h1>3. The Flow of Association and Causation in Graphs<a class="headerlink" href="#the-flow-of-association-and-causation-in-graphs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="graph-terminology">
+<h2>3.1 Graph Terminology<a class="headerlink" href="#graph-terminology" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="bayesian-networks">
+<h2>3.2 Bayesian Networks<a class="headerlink" href="#bayesian-networks" title="Permalink to this headline">¶</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Assumption 3.1 (Local Markov Assumption)</p>
+<p>Given its parents in the DAG, a node <span class="math notranslate nohighlight">\(X\)</span> is independent of all its non-descendants.</p>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Deﬁnition 3.1 (Bayesian Network Factorization)</p>
+<p>Given a probability distribution <span class="math notranslate nohighlight">\(P\)</span> and a DAG  <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(P\)</span> factorizes according to <span class="math notranslate nohighlight">\(P\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[P(x_1,\dots,x_n)=\prod_iP(x_i|pa_i)\]</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Assumption 3.2 (Minimality Assumption)</p>
+<ul class="simple">
+<li><p>Given its parents in the DAG, a node <span class="math notranslate nohighlight">\(X\)</span> is independent of all its non-descendants (Assumption 3.1).</p></li>
+<li><p>Adjacent nodes in the DAG are dependent.</p></li>
+</ul>
+</div>
+<p>相比于假设3.1，3.2告诉我们不能有额外的独立性存在，例如图3.8，通过假设3.1，可以将<span class="math notranslate nohighlight">\(P(x,y)\)</span>分解为<span class="math notranslate nohighlight">\(P(x)P(y|x)\)</span>或者<span class="math notranslate nohighlight">\(P(x)P(y)\)</span>，但在3.2的假设下，<span class="math notranslate nohighlight">\(P(x)P(y)\)</span>是不成立的</p>
+<a class="reference internal image-reference" href="../../_images/3.8.png"><img alt="../../_images/3.8.png" src="../../_images/3.8.png" style="width: 300px;" /></a>
+</div>
+<div class="section" id="causal-graphs">
+<h2>3.3 Causal Graphs<a class="headerlink" href="#causal-graphs" title="Permalink to this headline">¶</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Deﬁnition 3.2 (What is a cause?)</p>
+<p>A variable <span class="math notranslate nohighlight">\(X\)</span> is said to be a cause of a variable <span class="math notranslate nohighlight">\(Y\)</span> if <span class="math notranslate nohighlight">\(Y\)</span> can change in response to changes in <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Assumption 3.3 ((Strict) Causal Edges Assumption)</p>
+<p>In a directed graph, every parent is a direct cause of all its children.</p>
+</div>
+</div>
+<div class="section" id="two-node-graphs-and-graphical-building-blocks">
+<h2>3.4 Two-Node Graphs and Graphical Building Blocks<a class="headerlink" href="#two-node-graphs-and-graphical-building-blocks" title="Permalink to this headline">¶</a></h2>
+<p>本节我们将通过最基础的组成模块来理解因果性和相关性在DAG中的是如何传递的。</p>
+<p>最基础的组成模块包括：</p>
+<ol class="simple">
+<li><p>chain</p></li>
+<li><p>fork</p></li>
+<li><p>immorality(collider)</p></li>
+<li><p>两个不相连的节点</p></li>
+<li><p>两个相连的节点</p></li>
+</ol>
+<p>对于每一种组成模块，我们会给出两个节点（条件）独立或不独立的intuition以及证明。</p>
+<a class="reference internal image-reference" href="../../_images/3.9.png"><img alt="../../_images/3.9.png" src="../../_images/3.9.png" style="width: 800px;" /></a>
+<p>如图3.10，两个不相连的节点，根据<span class="xref myst">Definition 3.1</span>可以得到对应的贝叶斯网络分解式：</p>
+<div class="math notranslate nohighlight">
+\[P(x_1,x_2)=P(x_1)P(x_2)\]</div>
+<a class="reference internal image-reference" href="../../_images/3.10.png"><img alt="../../_images/3.10.png" src="../../_images/3.10.png" style="width: 300px;" /></a>
+<p>如图3.11，根据<span class="xref myst">Assumption 3.3</span>，<span class="math notranslate nohighlight">\(x_1\)</span>是<span class="math notranslate nohighlight">\(x_2\)</span>的因。</p>
+<a class="reference internal image-reference" href="../../_images/3.11.png"><img alt="../../_images/3.11.png" src="../../_images/3.11.png" style="width: 300px;" /></a>
+</div>
+<div class="section" id="chains-and-forks">
+<h2>3.5 Chains and Forks<a class="headerlink" href="#chains-and-forks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="association">
+<h3>3.5.1 相关性（Association）<a class="headerlink" href="#association" title="Permalink to this headline">¶</a></h3>
+<p>要证明<span class="math notranslate nohighlight">\(X_1\amalg X_3|X_2\)</span>，只需要说明<span class="math notranslate nohighlight">\(P(x_1,x_3|x_2)=P(x_1|x_2)P(x_3|x_2)\)</span>。</p>
+<div class="section" id="chains">
+<h4>Chains<a class="headerlink" href="#chains" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../_images/3.12.png"><img alt="../../_images/3.12.png" src="../../_images/3.12.png" style="width: 300px;" /></a>
+<p>对于chains，可以做如下因式分解：</p>
+<div class="math notranslate nohighlight">
+\[P(x_1,x_2,x_3)=P(x_1)P(x_2|x_1)P(x_3|x_2)\]</div>
+<p>通过贝叶斯定理得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}P(x_1,x_3|x_2)&amp;=\frac{P(x_1,x_2,x_3)}{P(x_2)}\\&amp;=\frac{P(x_1)P(x_2|x_1)P(x_3|x_2)}{P(x_2)}\\&amp;=\frac{P(x_1,x_2)}{P(x_2)}P(x_3|x_2)\\&amp;=P(x_1|x_2)P(x_3|x_2)\end{split}\end{split}\]</div>
+</div>
+<div class="section" id="forks">
+<h4>Forks<a class="headerlink" href="#forks" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../_images/3.13.png"><img alt="../../_images/3.13.png" src="../../_images/3.13.png" style="width: 300px;" /></a>
+<div class="math notranslate nohighlight">
+\[P(x_1,x_2,x_3)=P(x_2)P(x_1|x_2)P(x_3|x_2)\]</div>
+<p>通过贝叶斯定理得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}P(x_1,x_3|x_2)&amp;=\frac{P(x_1,x_2,x_3)}{P(x_2)}\\&amp;=\frac{P(x_2)P(x_1|x_2)P(x_3|x_2)}{P(x_2)}\\&amp;=\frac{P(x_1,x_2)}{P(x_2)}P(x_3|x_2)\\&amp;=P(x_1|x_2)P(x_3|x_2)\end{split}\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="causation">
+<h3>3.5.2 因果性（Causation）<a class="headerlink" href="#causation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>相关性是对称双向的，而因果性只在单个方向上传递</p></li>
+<li><p>因果性只在有向路径上传递</p></li>
+<li><p>相关性在不包含immorality的任意路径上传递</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="colliders-and-their-descendants">
+<h2>3.6 Colliders and their Descendants<a class="headerlink" href="#colliders-and-their-descendants" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="immorality-colliders">
+<h3>3.6.1 immorality(colliders)<a class="headerlink" href="#immorality-colliders" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/3.16.png"><img alt="../../_images/3.16.png" src="../../_images/3.16.png" style="width: 300px;" /></a>
+<p>不同于chains和forks，在immorality(colliders)中<span class="math notranslate nohighlight">\(X_1\amalg X_3\)</span>，通过贝斯网络因式分解和边缘化<span class="math notranslate nohighlight">\(x_2\)</span>可以说明</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}P(x_1,x_3)&amp;=\sum_{x_2}P(x_1,x_2,x_3)\\&amp;=\sum_{x_2}P(x_1)P(x_3)P(x_2|x_1,x_3)\\&amp;=P(x_1)P(x_3)\sum_{x_2}P(x_2|x_1,x_3)\\&amp;=P(x_1)P(x_3)\end{split}\end{split}\]</div>
+</div>
+<div class="section" id="good-looking-men-are-jerks">
+<h3>3.6.2 Good-Looking Men are Jerks<a class="headerlink" href="#good-looking-men-are-jerks" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/3.17.png"><img alt="../../_images/3.17.png" src="../../_images/3.17.png" style="width: 300px;" /></a>
+<div class="section" id="berksons-paradox">
+<h4>Berkson’s paradox<a class="headerlink" href="#berksons-paradox" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../_images/berkson's_paradox.png"><img alt="../../_images/berkson's_paradox.png" src="../../_images/berkson's_paradox.png" style="width: 800px;" /></a>
+</div>
+</div>
+<div class="section" id="numerical-example">
+<h3>3.6.3 Numerical Example<a class="headerlink" href="#numerical-example" title="Permalink to this headline">¶</a></h3>
+<p>考虑如下DGP(data generating process)数据生成过程，<span class="math notranslate nohighlight">\(X_1\)</span>和<span class="math notranslate nohighlight">\(X_3\)</span>独立地服从标准正态分布，并用来计算<span class="math notranslate nohighlight">\(X_2\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}X_1 \sim N(0,1),\ \ X_3\sim N(0,1)\\X_2=X_1+X_3\end{split}\end{split}\]</div>
+<p>我们已经声明了<span class="math notranslate nohighlight">\(X_1\)</span>和<span class="math notranslate nohighlight">\(X_3\)</span>是独立的，但是为了能够方便对比，计算其协方差：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}Cov(X_1,X_3)&amp;=\mathbb{E}[(X_1-\mathbb{E}[X_1])(X_3-\mathbb{E}[X_3])]\\&amp;=\mathbb{E}[X_1X_3]-\mathbb{E}[X_1]\mathbb{E}[X_3]\\&amp;=\mathbb{E}[X_1,X_3]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (zero \ mean)\\&amp;=\mathbb{E}[X_1]\mathbb{E}[X_3]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (independent)\\&amp;=0\end{split}\end{split}\]</div>
+<p>condition on <span class="math notranslate nohighlight">\(X_2\)</span>时，协方差是非零值，说明<span class="math notranslate nohighlight">\(X_1\)</span>和<span class="math notranslate nohighlight">\(X_3\)</span>是相关的：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}Cov(X_1,X_3|X_2=x)&amp;=\mathbb{E}[X_1X_3|X_2=x]\\&amp;=\mathbb{E}[X_1(x-X_1)]\\&amp;=x\mathbb{E}[X_1]-\mathbb{E}[X_1^2]\\&amp;=-1\end{split}\end{split}\]</div>
+</div>
+<div class="section" id="descendants-of-colliders">
+<h3>3.6.4 Descendants of Colliders<a class="headerlink" href="#descendants-of-colliders" title="Permalink to this headline">¶</a></h3>
+<p>因为从collider到它的孩子存在一条有向因果路径，他们是相关的，因此可以把collider的孩子看作其代理人，因此condition on collider的孩子跟它自己是相似的。</p>
+</div>
+</div>
+<div class="section" id="d-separation">
+<h2>3.7 d-separation<a class="headerlink" href="#d-separation" title="Permalink to this headline">¶</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Deﬁnition 3.3 (blocked path)</p>
+<p>A path between nodes <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is blocked by a (potentially empty) conditioning set <span class="math notranslate nohighlight">\(Z\)</span> if either of the following is true:</p>
+<ol class="simple">
+<li><p>Along the path, there is a chain <span class="math notranslate nohighlight">\(\cdots \rightarrow W \rightarrow \cdots\)</span> or a fork <span class="math notranslate nohighlight">\(\cdots \leftarrow W \rightarrow \cdots\)</span>, where <span class="math notranslate nohighlight">\(W\)</span> is conditioned on (<span class="math notranslate nohighlight">\(W\in Z\)</span>).</p></li>
+<li><p>There is a collider <span class="math notranslate nohighlight">\(W\)</span> on the path that is not conditioned on (<span class="math notranslate nohighlight">\(W\notin Z\)</span>) and none of its descendants are conditioned on (<span class="math notranslate nohighlight">\(de(W)\nsubseteq Z\)</span>).</p></li>
+</ol>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Deﬁnition 3.4 (d-separation)</p>
+<p>Two (sets of) nodes <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are d-separated by a set of nodes <span class="math notranslate nohighlight">\(Z\)</span> if all of the paths between (any node in) <span class="math notranslate nohighlight">\(X\)</span> and (any node in) <span class="math notranslate nohighlight">\(Y\)</span> are blocked by <span class="math notranslate nohighlight">\(Z\)</span>.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem 3.1 (global Markov assumption)</p>
+<p>Given that <span class="math notranslate nohighlight">\(P\)</span> is <em>Markov</em> with respect to <span class="math notranslate nohighlight">\(G\)</span> (satisﬁes the local Markov assumption, Assumption 3.1), if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are d-separated in  <span class="math notranslate nohighlight">\(G\)</span>conditioned on <span class="math notranslate nohighlight">\(Z\)</span>, then <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent in <span class="math notranslate nohighlight">\(P\)</span> conditioned on <span class="math notranslate nohighlight">\(Z\)</span>. We can write this succinctly as follows:</p>
+<div class="math notranslate nohighlight">
+\[X\amalg_GY|Z \Longrightarrow X\amalg_PY|Z\]</div>
+</div>
+<p>这个定理非常重要，公式称为 <strong>global Markov assumption</strong></p>
+<p>local Markov assumption，Bayesian network factorization 和 global Markov assumption 是等价的(all equivalent)。</p>
+</div>
+<div class="section" id="id1">
+<h2>练习<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/3.19a.png"><img alt="../../_images/3.19a.png" src="../../_images/3.19a.png" style="width: 300px;" /></a>
+<p><a class="reference external" href="https://www.notion.so/daabbc9b8d4943df92eebd6e286d3f24">Fgiure 3.19a exercise</a></p>
+<a class="reference internal image-reference" href="../../_images/3.19b.png"><img alt="../../_images/3.19b.png" src="../../_images/3.19b.png" style="width: 300px;" /></a>
+<p><a class="reference external" href="https://www.notion.so/7dca44fb15954ae18c348fa125049e5c">Fgiure 3.19b exercise</a></p>
+</div>
+<div class="section" id="flow-of-association-and-causation">
+<h2>3.8 Flow of Association and Causation<a class="headerlink" href="#flow-of-association-and-causation" title="Permalink to this headline">¶</a></h2>
+<p>回顾Section 1.3.2，不仅仅是相关性不是因果性，其实因果性是相关性的子类，这就是为什么相关性和因果性都在有向路径中传递。</p>
+<a class="reference internal image-reference" href="../../_images/3.20.png"><img alt="../../_images/3.20.png" src="../../_images/3.20.png" style="width: 300px;" /></a>
+<p>我们将有向路径中传递的相关性看做因果相关性，一种常见的非因果相关性叫做混淆相关性(confounding association)，如图3.20。</p>
+<p>常规的贝叶斯网络是单纯的统计模型，因此我们只能在贝叶斯网络中讨论相关性的传递。相关性在因果图中也有着完全相同的方式。通过基础的模块（chain、fork、collider）我们能知道相关性在普遍DAG图中是如何传递的，也能通过两个节点是否是d-sparated来判断是否相关。</p>
+<p>Assumption 3.3赋予了有向路径传递因果性的独有角色，同时表明因果性是不对称的，相关性是对称的。</p>
+<div class="section" id="id2">
+<h3>3.8.1 d-separation说明相关性是因果性<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>在把<span class="math notranslate nohighlight">\(X\)</span>的所有出度（从<span class="math notranslate nohighlight">\(X\)</span>指向外部的边）删除的途中，如果<span class="math notranslate nohighlight">\(X\)</span>和<span class="math notranslate nohighlight">\(Y\)</span>是d-separated，那么他们之间只存在单纯的非因果相关性，因为因果性只存在<span class="math notranslate nohighlight">\(X\)</span>指向<span class="math notranslate nohighlight">\(Y\)</span>的边中，已经被删掉了。</p>
+<a class="reference internal image-reference" href="../../_images/3.21.png"><img alt="../../_images/3.21.png" src="../../_images/3.21.png" style="width: 900px;" /></a>
+<p>图3.21通过解释相关性的传递说明了每个假设(assumption)的意义：</p>
+<ol class="simple">
+<li><p><span class="xref myst">Markov Assumption(Assumption 3.1)</span>告诉我们哪些节点是不相关的；</p></li>
+<li><p><span class="xref myst">Minimality Assumption(Assumption 3.2)</span>又告诉我们哪些路径上存在相关性；</p></li>
+<li><p><span class="xref myst">Causal Edges Assumption(Assumption 3.3)</span>让我们知道因果性只在有向路径上传递</p></li>
+</ol>
+<p>最重要是1和3，因为Minimality Assumption的第一部分就是Markov Assumption，第二部分也被囊括在Causal Edges Assumption中了。</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "cancermqiao/CancerMBook.git",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./causal_inference/introduction_to_causal_inference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch2.html" title="previous page">2 Potential Outcomes</a>
+    <a class='right-next' id="next-link" href="ch4.html" title="next page">4. Causal Models</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By CancerM Qiao<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </body>
+</html>

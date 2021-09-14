@@ -8,15 +8,16 @@
 # 
 # ### 题目
 # 
-#     将一个随机数组分割成两部分，使得分割后的两部分的方差和最小。
+# 将一个随机数组分割成两部分，使得分割后的两部分的方差和最小。
 # 
 # 
 # ### 解法
 #     
-#     方差表达式
-# $$\begin{split}\sigma^2(x)&=E\left[\left(x-E\left[x\right]\right)^2\right]\\&=E\left[x^2-2xE\left[x\right]+E^2\left[x\right]\right]\\&=E\left[x^2\right]-E^2\left[x\right]\end{split}$$
+# 方差表达式
+# \begin{align}\sigma^2(x)&=E\left[\left(x-E\left[x\right]\right)^2\right]\\&=E\left[x^2-2xE\left[x\right]+E^2\left[x\right]\right]\\&=E\left[x^2\right]-E^2\left[x\right]
+# \end{align} 
 # 
-#     借用该表达式，可以递归地求得增加新的元素后的数组方差
+# 借用该表达式，可以递归地求得增加新的元素后的数组方差
 # 
 # 
 # ### 代码

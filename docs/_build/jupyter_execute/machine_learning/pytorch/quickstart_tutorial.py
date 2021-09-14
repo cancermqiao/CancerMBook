@@ -1,32 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # 0. Quickstart
 # 
-# `Learn the Basics <intro.html>`_ ||
-# **Quickstart** ||
-# `Tensors <tensorqs_tutorial.html>`_ ||
-# `Datasets & DataLoaders <data_tutorial.html>`_ ||
-# `Transforms <transforms_tutorial.html>`_ ||
-# `Build Model <buildmodel_tutorial.html>`_ ||
-# `Autograd <autogradqs_tutorial.html>`_ ||
-# `Optimization <optimization_tutorial.html>`_ ||
-# `Save & Load Model <saveloadrun_tutorial.html>`_
-# 
-# Quickstart
-# ===================
 # This section runs through the API for common tasks in machine learning. Refer to the links in each section to dive deeper.
 # 
-# Working with data
-# -----------------
-# PyTorch has two `primitives to work with data <https://pytorch.org/docs/stable/data.html>`_:
+# ## Working with data
+# 
+# PyTorch has two [primitives to work with data](https://pytorch.org/docs/stable/data.html):
 # ``torch.utils.data.DataLoader`` and ``torch.utils.data.Dataset``.
 # ``Dataset`` stores the samples and their corresponding labels, and ``DataLoader`` wraps an iterable around
 # the ``Dataset``.
-# 
-# 
-# 
 
-# In[2]:
+# In[1]:
 
 
 import torch
@@ -38,16 +24,14 @@ import matplotlib.pyplot as plt
 import altair as alt
 
 
-# PyTorch offers domain-specific libraries such as `TorchText <https://pytorch.org/text/stable/index.html>`_,
-# `TorchVision <https://pytorch.org/vision/stable/index.html>`_, and `TorchAudio <https://pytorch.org/audio/stable/index.html>`_,
+# PyTorch offers domain-specific libraries such as [TorchText](https://pytorch.org/text/stable/index.html),
+# [TorchVision](https://pytorch.org/vision/stable/index.html), and [TorchAudio](https://pytorch.org/audio/stable/index.html),
 # all of which include datasets. For this tutorial, we  will be using a TorchVision dataset.
 # 
 # The ``torchvision.datasets`` module contains ``Dataset`` objects for many real-world vision data like
-# CIFAR, COCO (`full list here <https://pytorch.org/vision/stable/datasets.html>`_). In this tutorial, we
+# CIFAR, COCO ([full list here](https://pytorch.org/vision/stable/datasets.html)). In this tutorial, we
 # use the FashionMNIST dataset. Every TorchVision ``Dataset`` includes two arguments: ``transform`` and
 # ``target_transform`` to modify the samples and labels respectively.
-# 
-# 
 
 # In[3]:
 
@@ -75,7 +59,7 @@ test_data = datasets.FashionMNIST(
 # 
 # 
 
-# In[5]:
+# In[14]:
 
 
 batch_size = 64
@@ -90,26 +74,16 @@ for X, y in test_dataloader:
     break
 
 
-# Read more about `loading data in PyTorch <data_tutorial.html>`_.
+# Read more about [loading data in PyTorch](../pytorch/data_tutorial.ipynb).
 # 
-# 
-# 
+# ----------------------
 
-# --------------
+# ## Creating Models
 # 
-# 
-# 
-
-# Creating Models
-# ------------------
 # To define a neural network in PyTorch, we create a class that inherits
-# from `nn.Module <https://pytorch.org/docs/stable/generated/torch.nn.Module.html>`_. We define the layers of the network
-# in the ``__init__`` function and specify how data will pass through the network in the ``forward`` function. To accelerate
-# operations in the neural network, we move it to the GPU if available.
-# 
-# 
+# from [nn.Module](https://pytorch.org/docs/stable/generated/torch.nn.Module.html). We define the layers of the network in the ``__init__`` function and specify how data will pass through the network in the ``forward`` function. To accelerate operations in the neural network, we move it to the GPU if available.
 
-# In[6]:
+# In[31]:
 
 
 # Get cpu or gpu device for training.
@@ -127,7 +101,7 @@ class NeuralNetwork(nn.Module):
             nn.Linear(512, 512),
             nn.ReLU(),
             nn.Linear(512, 10),
-            nn.ReLU()
+#             nn.ReLU()
         )
 
     def forward(self, x):
@@ -139,24 +113,16 @@ model = NeuralNetwork().to(device)
 print(model)
 
 
-# Read more about `building neural networks in PyTorch <buildmodel_tutorial.html>`_.
+# Read more about [building neural networks in PyTorch](../pytorch/buildmodel_tutorial.ipynb).
 # 
-# 
-# 
-
 # --------------
-# 
-# 
-# 
 
-# Optimizing the Model Parameters
-# ----------------------------------------
-# To train a model, we need a `loss function <https://pytorch.org/docs/stable/nn.html#loss-functions>`_
-# and an `optimizer <https://pytorch.org/docs/stable/optim.html>`_.
+# ## Optimizing the Model Parameters
 # 
-# 
+# To train a model, we need a [loss function](https://pytorch.org/docs/stable/nn.html#loss-functions)
+# and an [optimizer](https://pytorch.org/docs/stable/optim.html).
 
-# In[7]:
+# In[32]:
 
 
 loss_fn = nn.CrossEntropyLoss()
@@ -168,7 +134,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 # 
 # 
 
-# In[8]:
+# In[33]:
 
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -194,7 +160,7 @@ def train(dataloader, model, loss_fn, optimizer):
 # 
 # 
 
-# In[9]:
+# In[34]:
 
 
 def test(dataloader, model, loss_fn):
@@ -219,7 +185,7 @@ def test(dataloader, model, loss_fn):
 # 
 # 
 
-# In[10]:
+# In[35]:
 
 
 epochs = 5
@@ -230,38 +196,25 @@ for t in range(epochs):
 print("Done!")
 
 
-# Read more about `Training your model <optimization_tutorial.html>`_.
+# Read more about [Optimizing Model Parameters](../pytorch/optimization_tutorial.ipynb).
 # 
-# 
-# 
-
 # --------------
-# 
-# 
-# 
 
-# Saving Models
-# -------------
+# ## Saving Models
 # A common way to save a model is to serialize the internal state dictionary (containing the model parameters).
-# 
-# 
 
-# In[11]:
+# In[36]:
 
 
 torch.save(model.state_dict(), "model.pth")
 print("Saved PyTorch Model State to model.pth")
 
 
-# Loading Models
-# ----------------------------
-# 
+# ## Loading Models
 # The process for loading a model includes re-creating the model structure and loading
 # the state dictionary into it.
-# 
-# 
 
-# In[12]:
+# In[37]:
 
 
 model = NeuralNetwork()
@@ -272,7 +225,7 @@ model.load_state_dict(torch.load("model.pth"))
 # 
 # 
 
-# In[13]:
+# In[38]:
 
 
 classes = [
@@ -296,7 +249,4 @@ with torch.no_grad():
     print(f'Predicted: "{predicted}", Actual: "{actual}"')
 
 
-# Read more about `Saving & Loading your model <saveloadrun_tutorial.html>`_.
-# 
-# 
-# 
+# Read more about [Saving & Loading your model](../pytorch/saveloadrun_tutorial.ipynb).

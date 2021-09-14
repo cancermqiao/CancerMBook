@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,20 +41,22 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://jupyterbook.org/causal_inference/introduction_to_causal_inference/ch2.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Here’s my sample title" href="../../papers/reinforcement_learning/overview.html" />
+    <link rel="next" title="3. The Flow of Association and Causation in Graphs" href="ch3.html" />
     <link rel="prev" title="1. Motivation: Why You Might Care" href="ch1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -82,14 +85,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing_page.html">
-   欢迎来到CancerM Book
-  </a>
- </li>
-</ul>
-<p class="caption">
+        <p class="caption">
  <span class="caption-text">
   机器学习(Machine Learning)
  </span>
@@ -107,14 +103,69 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
-     <strong>
-      Homework 1: COVID-19 Cases Prediction (Regression)
-     </strong>
+     Homework 1: COVID-19 Cases Prediction (Regression)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../machine_learning/Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
      常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../machine_learning/pytorch/intro.html">
+   Pytorch Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/quickstart_tutorial.html">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/optimization_tutorial.html">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../machine_learning/pytorch/saveloadrun_tutorial.html">
+     7. Save and Load the Model
     </a>
    </li>
   </ul>
@@ -130,8 +181,8 @@
   <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
    UCL Course on RL
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -159,8 +210,8 @@
   <a class="reference internal" href="overview.html">
    Introduction to Causal Inference
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -173,6 +224,45 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ch3.html">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
     </a>
    </li>
   </ul>
@@ -188,8 +278,8 @@
   <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
    Here’s my sample title
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -247,9 +337,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/causal_inference/introduction_to_causal_inference/ch2.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/causal_inference/introduction_to_causal_inference/ch2.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -257,6 +347,24 @@
 </div>
 
             <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fcausal_inference/introduction_to_causal_inference/ch2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/causal_inference/introduction_to_causal_inference/ch2.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
             <!-- Full screen (wrap in <a> to have style consistency -->
 
@@ -266,6 +374,31 @@
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cancermqiao/CancerMBook.git/master?urlpath=tree/docs/causal_inference/introduction_to_causal_inference/ch2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/cancermqiao/CancerMBook.git/blob/master/docs/causal_inference/introduction_to_causal_inference/ch2.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
 
         </div>
 
@@ -336,77 +469,15 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assumption-2-1-ignorability-exchangeability">
-     <strong>
-      Assumption 2.1
-     </strong>
-     (Ignorability / Exchangeability)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definition-2-1-identifiability-a-causal-quantity-e-g-mathbb-e-y-t-is-identifiable-if-we-can-compute-it-from-a-purely-statistical-quantity-e-g-mathbb-e-y-t">
-     <strong>
-      Deﬁnition 2.1
-     </strong>
-     (Identiﬁability) A causal quantity (
-     <span class="math notranslate nohighlight">
-      \(e.g.\ \mathbb{E}[Y(t)]\)
-     </span>
-     ) is identiﬁable if we can compute it from a purely statistical quantity (
-     <span class="math notranslate nohighlight">
-      \(e.g.\ \mathbb{E}[Y|t]\)
-     </span>
-     ).
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#conditional-exchangeability-and-unconfoundedness">
      2.3.3 Conditional Exchangeability and Unconfoundedness
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assumption-2-2-conditional-exchangeability-unconfoundedness">
-       <strong>
-        Assumption 2.2
-       </strong>
-       (Conditional Exchangeability / Unconfoundedness)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#theorem-2-1-adjustment-formula-given-the-assumptions-of-unconfoundedness-positivity-consistency-and-no-interference-we-can-identify-the-average-treatment-effect">
-       <strong>
-        Theorem 2.1
-       </strong>
-       (Adjustment Formula) Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#positivity-overlap-and-extrapolation">
      2.3.4 Positivity/Overlap and Extrapolation
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assumption-2-3-positivity-overlap-common-support-for-all-values-of-covariates-x-present-in-the-population-of-interest-i-e-x-such-that-p-x-x-0">
-       <strong>
-        Assumption 2.3
-       </strong>
-       (Positivity / Overlap / Common Support) For all values of covariates
-       <span class="math notranslate nohighlight">
-        \(x\)
-       </span>
-       present in the population of interest (i.e.
-       <span class="math notranslate nohighlight">
-        \(x\)
-       </span>
-       such that
-       <span class="math notranslate nohighlight">
-        \(P(X=x)&gt;0\)
-       </span>
-       ),
-      </a>
-     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#positivity-overlap-common-support">
        positivity/overlap/common support
@@ -429,34 +500,6 @@
      2.3.5 No interference, Consistency, and SUTVA
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assumption-2-4-no-interference">
-       <strong>
-        Assumption 2.4
-       </strong>
-       (No Interference)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assumption-2-5-consistency-if-the-treatment-is-t-then-the-observed-outcome-y-is-the-potential-outcome-under-treatment-t-formally">
-       <strong>
-        Assumption 2.5
-       </strong>
-       (Consistency) If the treatment is
-       <span class="math notranslate nohighlight">
-        \(T\)
-       </span>
-       , then the observed outcome
-       <span class="math notranslate nohighlight">
-        \(Y\)
-       </span>
-       is the potential outcome under treatment
-       <span class="math notranslate nohighlight">
-        \(T\)
-       </span>
-       . Formally,
-      </a>
-     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#we-could-write-this-equivalently-as-follow">
        We could write this equivalently as follow:
@@ -510,9 +553,7 @@
 </div>
 <div class="section" id="individual-treatment-effect-ite">
 <h3>Individual Treatment Eﬀect (ITE)<a class="headerlink" href="#individual-treatment-effect-ite" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>个体$i$的ITE：
-</pre></div>
-</div>
+<p>个体<span class="math notranslate nohighlight">\(i\)</span>的ITE：</p>
 <div class="math notranslate nohighlight">
 \[\tau_i \triangleq Y_i(1)-Y_i(0)\]</div>
 </div>
@@ -555,10 +596,11 @@
 <p>如何让associational difference等于ATE？</p>
 <p>给予受试者随机的treatment，去除受试者对treatment选择的影响</p>
 <a class="reference internal image-reference" href="../../_images/2.2.png"><img alt="../../_images/2.2.png" src="../../_images/2.2.png" style="width: 400px;" /></a>
-<div class="section" id="assumption-2-1-ignorability-exchangeability">
-<h3><strong>Assumption 2.1</strong> (Ignorability / Exchangeability)<a class="headerlink" href="#assumption-2-1-ignorability-exchangeability" title="Permalink to this headline">¶</a></h3>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2.1 (Ignorability / Exchangeability)</p>
 <div class="math notranslate nohighlight">
 \[(Y(1),Y(0))\amalg T\]</div>
+</div>
 <p>这个假设是因果推断的关键，可以将ATE转换为associational difference：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{split}\mathbb{E}Y(1)]-\mathbb{E}[Y(0)]&amp;=\mathbb{E}[Y(1)|T=1]-\mathbb{E}[Y(0)|T=0]\\&amp;=\mathbb{E}[Y|T=1]-\mathbb{E}[Y|T=0]\end{split}\end{split}\]</div>
@@ -572,39 +614,38 @@
 \[\mathbb{E}[Y(1)|T=t]=\mathbb{E}[Y(1)]\]</div>
 <div class="math notranslate nohighlight">
 \[\mathbb{E}[Y(0)|T=t]=\mathbb{E}[Y(0)]\]</div>
-</div>
-<div class="section" id="definition-2-1-identifiability-a-causal-quantity-e-g-mathbb-e-y-t-is-identifiable-if-we-can-compute-it-from-a-purely-statistical-quantity-e-g-mathbb-e-y-t">
-<h3><strong>Deﬁnition 2.1</strong> (Identiﬁability) A causal quantity ( <span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y(t)]\)</span>) is identiﬁable if we can compute it from a purely statistical quantity (<span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y|t]\)</span>).<a class="headerlink" href="#definition-2-1-identifiability-a-causal-quantity-e-g-mathbb-e-y-t-is-identifiable-if-we-can-compute-it-from-a-purely-statistical-quantity-e-g-mathbb-e-y-t" title="Permalink to this headline">¶</a></h3>
-<!-- #region -->
+<div class="warning admonition">
+<p class="admonition-title">Deﬁnition 2.1 (Identiﬁability)</p>
+<p>A causal quantity ( <span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y(t)]\)</span>) is identiﬁable if we can compute it from a purely statistical quantity (<span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y|t]\)</span>).</p>
 </div>
 <div class="section" id="conditional-exchangeability-and-unconfoundedness">
 <h3>2.3.3 Conditional Exchangeability and Unconfoundedness<a class="headerlink" href="#conditional-exchangeability-and-unconfoundedness" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="assumption-2-2-conditional-exchangeability-unconfoundedness">
-<h4><strong>Assumption 2.2</strong> (Conditional Exchangeability / Unconfoundedness)<a class="headerlink" href="#assumption-2-2-conditional-exchangeability-unconfoundedness" title="Permalink to this headline">¶</a></h4>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2.2 (Conditional Exchangeability / Unconfoundedness)</p>
 <div class="math notranslate nohighlight">
 \[(Y(1),Y(0))\amalg T|X\]</div>
+</div>
 <p><span class="math notranslate nohighlight">\(T\)</span>和<span class="math notranslate nohighlight">\(Y\)</span>之间的非因果关联是通过<span class="math notranslate nohighlight">\(T \leftarrow X \rightarrow Y\)</span>传递的，在图2.3中用红色点线表示。</p>
 <a class="reference internal image-reference" href="../../_images/2.3.png"><img alt="../../_images/2.3.png" src="../../_images/2.3.png" style="width: 400px;" /></a>
 <p>当以<span class="math notranslate nohighlight">\(X\)</span>作为条件时，就不存在非因果关联了，如图2.4所示，称之为conditional exchangeability。</p>
 <a class="reference internal image-reference" href="../../_images/2.4.png"><img alt="../../_images/2.4.png" src="../../_images/2.4.png" style="width: 400px;" /></a>
 <p>有了conditional exchangeability的假设，可以得到<span class="math notranslate nohighlight">\(X\)</span>级别上的causal effect，</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}\mathbb{E}[Y(1)-Y(0)|X]&amp;=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&amp;=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&amp;=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{split}\end{split}\]</div>
+\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)|X]&amp;=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&amp;=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&amp;=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}\end{split}\]</div>
 <p>在conditional exchangeability的假设下，遍历<span class="math notranslate nohighlight">\(X\)</span>可以到边际效应，</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{split}\end{split}\]</div>
-</div>
-<div class="section" id="theorem-2-1-adjustment-formula-given-the-assumptions-of-unconfoundedness-positivity-consistency-and-no-interference-we-can-identify-the-average-treatment-effect">
-<h4><strong>Theorem 2.1</strong> (Adjustment Formula) Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:<a class="headerlink" href="#theorem-2-1-adjustment-formula-given-the-assumptions-of-unconfoundedness-positivity-consistency-and-no-interference-we-can-identify-the-average-treatment-effect" title="Permalink to this headline">¶</a></h4>
-<div class="math notranslate nohighlight">
-\[\mathbb{E}[Y(1) − Y(0)] = \mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\]</div>
-<!-- #endregion -->
+\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}\end{split}\]</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem 2.1 (Adjustment Formula)</p>
+<p>Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:
+$<span class="math notranslate nohighlight">\(\mathbb{E}[Y(1) − Y(0)] = \mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\)</span>$</p>
 </div>
 </div>
 <div class="section" id="positivity-overlap-and-extrapolation">
 <h3>2.3.4 Positivity/Overlap and Extrapolation<a class="headerlink" href="#positivity-overlap-and-extrapolation" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="assumption-2-3-positivity-overlap-common-support-for-all-values-of-covariates-x-present-in-the-population-of-interest-i-e-x-such-that-p-x-x-0">
-<h4><strong>Assumption 2.3</strong> (Positivity / Overlap / Common Support) For all values of covariates <span class="math notranslate nohighlight">\(x\)</span> present in the population of interest (i.e. <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(P(X=x)&gt;0\)</span>),<a class="headerlink" href="#assumption-2-3-positivity-overlap-common-support-for-all-values-of-covariates-x-present-in-the-population-of-interest-i-e-x-such-that-p-x-x-0" title="Permalink to this headline">¶</a></h4>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2.3 (Positivity / Overlap / Common Support)</p>
+<p>For all values of covariates <span class="math notranslate nohighlight">\(x\)</span> present in the population of interest (i.e. <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(P(X=x)&gt;0\)</span>),</p>
 <div class="math notranslate nohighlight">
 \[0&lt;P(T=1|X=x)&lt;1\]</div>
 </div>
@@ -612,7 +653,7 @@
 <h4>positivity/overlap/common support<a class="headerlink" href="#positivity-overlap-common-support" title="Permalink to this headline">¶</a></h4>
 <p>用Bayes拆解后，分母中不能为0</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&amp;=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&amp;=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{split}\end{split}\]</div>
+\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&amp;=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&amp;=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}\end{split}\]</div>
 <p>如果数据中的一个子集都是treatment或者control，那么就无法估计其causal effect。</p>
 </div>
 <div class="section" id="the-positivity-unconfoundedness-tradeoff">
@@ -626,14 +667,15 @@
 </div>
 <div class="section" id="no-interference-consistency-and-sutva">
 <h3>2.3.5 No interference, Consistency, and SUTVA<a class="headerlink" href="#no-interference-consistency-and-sutva" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="assumption-2-4-no-interference">
-<h4><strong>Assumption 2.4</strong> (No Interference)<a class="headerlink" href="#assumption-2-4-no-interference" title="Permalink to this headline">¶</a></h4>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2.4 (No Interference)</p>
 <div class="math notranslate nohighlight">
 \[Y_i(t_1,...,t_{i-1},t_i,t_{i+1},...,t_n)=Y_i(t_i)\]</div>
-<p>即输出不受其他人的treatment影响。但这个假设很容易打破，例如，如果treatment是“养狗”，输出是我的快乐程度，那么很容易受朋友是否养狗的影响，因为我们会一起遛狗。</p>
 </div>
-<div class="section" id="assumption-2-5-consistency-if-the-treatment-is-t-then-the-observed-outcome-y-is-the-potential-outcome-under-treatment-t-formally">
-<h4><strong>Assumption 2.5</strong> (Consistency) If the treatment is <span class="math notranslate nohighlight">\(T\)</span>, then the observed outcome <span class="math notranslate nohighlight">\(Y\)</span> is the potential outcome under treatment <span class="math notranslate nohighlight">\(T\)</span>. Formally,<a class="headerlink" href="#assumption-2-5-consistency-if-the-treatment-is-t-then-the-observed-outcome-y-is-the-potential-outcome-under-treatment-t-formally" title="Permalink to this headline">¶</a></h4>
+<p>即输出不受其他人的treatment影响。但这个假设很容易打破，例如，如果treatment是“养狗”，输出是我的快乐程度，那么很容易受朋友是否养狗的影响，因为我们会一起遛狗。</p>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2.5 (Consistency)</p>
+<p>If the treatment is <span class="math notranslate nohighlight">\(T\)</span>, then the observed outcome <span class="math notranslate nohighlight">\(Y\)</span> is the potential outcome under treatment <span class="math notranslate nohighlight">\(T\)</span>. Formally,</p>
 <div class="math notranslate nohighlight">
 \[T=t \Longrightarrow Y=Y(t)\]</div>
 </div>
@@ -654,7 +696,6 @@
 <div class="section" id="tying-it-all-together">
 <h3>2.3.6 Tying It All Together<a class="headerlink" href="#tying-it-all-together" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="../../_images/pot2.1.png"><img alt="../../_images/pot2.1.png" src="../../_images/pot2.1.png" style="width: 500px;" /></a>
-<!-- #region -->
 </div>
 </div>
 <div class="section" id="fancy-statistics-terminology-defancified">
@@ -669,8 +710,9 @@
 </div>
 <div class="section" id="a-complete-example-with-estimation">
 <h2>2.5 A Complete Example with Estimation<a class="headerlink" href="#a-complete-example-with-estimation" title="Permalink to this headline">¶</a></h2>
-<!-- #endregion -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Estimating the causal effect of sodium on blood pressure in a simulated example</span>
 <span class="sd">adapted from Luque-Fernandez et al. (2018):</span>
 <span class="sd">    https://academic.oup.com/ije/article/48/2/640/5248195</span>
@@ -744,8 +786,39 @@
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>### Binary Treatment Data ###
 </pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Adjustment Formula Estimates #
+Naive ATE estimate:							 5.328501680864975
+ATE estimate adjusting for all covariates:	 0.8537946431496021
+ATE estimate adjusting for age:				 1.0502124539714488
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Regression Coefficient Estimates #
+Naive ATE estimate:							 5.328501680864978
+ATE estimate adjusting for all covariates:	 0.8537946431495851
+ATE estimate adjusting for age:				 1.0502124539714823
+
+
+### Continuous Treatment Data ###
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Adjustment Formula Estimates #
+Naive ATE estimate:							 3.628378195978172
+ATE estimate adjusting for all covariates:	 0.8532920319407821
+ATE estimate adjusting for age:				 1.0497716562238169
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Regression Coefficient Estimates #
+Naive ATE estimate:							 3.6283781959780943
+ATE estimate adjusting for all covariates:	 0.8532920319407795
+ATE estimate adjusting for age:				 1.0497716562238382
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -754,7 +827,7 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "cancermqiao/CancerMBook.git",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -776,7 +849,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="ch1.html" title="previous page">1. Motivation: Why You Might Care</a>
-    <a class='right-next' id="next-link" href="../../papers/reinforcement_learning/overview.html" title="next page">Here’s my sample title</a>
+    <a class='right-next' id="next-link" href="ch3.html" title="next page">3. The Flow of Association and Causation in Graphs</a>
 
         </div>
         
@@ -801,5 +874,15 @@
   <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </body>
 </html>

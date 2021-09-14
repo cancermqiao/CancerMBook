@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # 第K大的数
+
 # In[1]:
 
 
@@ -28,28 +30,4 @@ def quick_sort(arr, l, r):
 arr = [2, 1, 4, 7, 6, 5]
 
 quick_sort(arr, 0, len(arr)-1)
-
-
-# In[ ]:
-
-
-
-
-
-# In[3]:
-
-
-[1, 2, 4, 7, 6, 5]
-
-
-# In[4]:
-
-
-[4, 7, 6, 5]
-
-
-# In[5]:
-
-
-[]
 

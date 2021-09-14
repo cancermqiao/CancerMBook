@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quickstart &#8212; CancerM Book</title>
+    <title>0. Quickstart &#8212; CancerM Book</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,17 +41,21 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://jupyterbook.org/machine_learning/pytorch/quickstart_tutorial.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Tensors" href="tensorqs_tutorial.html" />
+    <link rel="prev" title="Pytorch Tutorial" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -78,19 +83,12 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing_page.html">
-   欢迎来到CancerM Book
-  </a>
- </li>
-</ul>
-<p class="caption">
+        <p class="caption">
  <span class="caption-text">
   机器学习(Machine Learning)
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/overview.html">
    Machine Learning 2021(李宏毅)
@@ -103,14 +101,69 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
-     <strong>
-      Homework 1: COVID-19 Cases Prediction (Regression)
-     </strong>
+     Homework 1: COVID-19 Cases Prediction (Regression)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
      常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   Pytorch Tutorial
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimization_tutorial.html">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="saveloadrun_tutorial.html">
+     7. Save and Load the Model
     </a>
    </li>
   </ul>
@@ -126,8 +179,8 @@
   <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
    UCL Course on RL
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -155,8 +208,8 @@
   <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
    Introduction to Causal Inference
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -169,6 +222,45 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
      2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch3.html">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
     </a>
    </li>
   </ul>
@@ -184,8 +276,8 @@
   <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
    Here’s my sample title
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -254,6 +346,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fmachine_learning/pytorch/quickstart_tutorial.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/machine_learning/pytorch/quickstart_tutorial.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -268,7 +378,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/machine_learning/pytorch/quickstart_tutorial.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cancermqiao/CancerMBook.git/master?urlpath=tree/docs/machine_learning/pytorch/quickstart_tutorial.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -276,6 +386,14 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/cancermqiao/CancerMBook.git/blob/master/docs/machine_learning/pytorch/quickstart_tutorial.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -326,21 +444,12 @@
         
               <div>
                 
-  <p><code class="docutils literal notranslate"><span class="pre">Learn</span> <span class="pre">the</span> <span class="pre">Basics</span> <span class="pre">&lt;intro.html&gt;</span></code>_ ||
-<strong>Quickstart</strong> ||
-<code class="docutils literal notranslate"><span class="pre">Tensors</span> <span class="pre">&lt;tensorqs_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Datasets</span> <span class="pre">&amp;</span> <span class="pre">DataLoaders</span> <span class="pre">&lt;data_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Transforms</span> <span class="pre">&lt;transforms_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Model</span> <span class="pre">&lt;buildmodel_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Autograd</span> <span class="pre">&lt;autogradqs_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Optimization</span> <span class="pre">&lt;optimization_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">&amp;</span> <span class="pre">Load</span> <span class="pre">Model</span> <span class="pre">&lt;saveloadrun_tutorial.html&gt;</span></code>_</p>
-<div class="section" id="quickstart">
-<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="quickstart">
+<h1>0. Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
 <p>This section runs through the API for common tasks in machine learning. Refer to the links in each section to dive deeper.</p>
 <div class="section" id="working-with-data">
 <h2>Working with data<a class="headerlink" href="#working-with-data" title="Permalink to this headline">¶</a></h2>
-<p>PyTorch has two <code class="docutils literal notranslate"><span class="pre">primitives</span> <span class="pre">to</span> <span class="pre">work</span> <span class="pre">with</span> <span class="pre">data</span> <span class="pre">&lt;https://pytorch.org/docs/stable/data.html&gt;</span></code>_:
+<p>PyTorch has two <a class="reference external" href="https://pytorch.org/docs/stable/data.html">primitives to work with data</a>:
 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code> and <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>.
 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> stores the samples and their corresponding labels, and <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> wraps an iterable around
 the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
@@ -357,11 +466,11 @@ the <code class="docutils literal notranslate"><span class="pre">Dataset</span><
 </div>
 </div>
 </div>
-<p>PyTorch offers domain-specific libraries such as <code class="docutils literal notranslate"><span class="pre">TorchText</span> <span class="pre">&lt;https://pytorch.org/text/stable/index.html&gt;</span></code><em>,
-<code class="docutils literal notranslate"><span class="pre">TorchVision</span> <span class="pre">&lt;https://pytorch.org/vision/stable/index.html&gt;</span></code></em>, and <code class="docutils literal notranslate"><span class="pre">TorchAudio</span> <span class="pre">&lt;https://pytorch.org/audio/stable/index.html&gt;</span></code>_,
+<p>PyTorch offers domain-specific libraries such as <a class="reference external" href="https://pytorch.org/text/stable/index.html">TorchText</a>,
+<a class="reference external" href="https://pytorch.org/vision/stable/index.html">TorchVision</a>, and <a class="reference external" href="https://pytorch.org/audio/stable/index.html">TorchAudio</a>,
 all of which include datasets. For this tutorial, we  will be using a TorchVision dataset.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code> module contains <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects for many real-world vision data like
-CIFAR, COCO (<code class="docutils literal notranslate"><span class="pre">full</span> <span class="pre">list</span> <span class="pre">here</span> <span class="pre">&lt;https://pytorch.org/vision/stable/datasets.html&gt;</span></code>_). In this tutorial, we
+CIFAR, COCO (<a class="reference external" href="https://pytorch.org/vision/stable/datasets.html">full list here</a>). In this tutorial, we
 use the FashionMNIST dataset. Every TorchVision <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> includes two arguments: <code class="docutils literal notranslate"><span class="pre">transform</span></code> and
 <code class="docutils literal notranslate"><span class="pre">target_transform</span></code> to modify the samples and labels respectively.</p>
 <div class="cell docutils container">
@@ -381,45 +490,6 @@ use the FashionMNIST dataset. Every TorchVision <code class="docutils literal no
     <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to data/FashionMNIST/raw/train-images-idx3-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "095320e22b834acb82c0eeb94c0e0128", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data/FashionMNIST/raw/train-images-idx3-ubyte.gz to data/FashionMNIST/raw
-
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz to data/FashionMNIST/raw/train-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6eeb1efadaf340b68e08bb558d707ee3", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data/FashionMNIST/raw/train-labels-idx1-ubyte.gz to data/FashionMNIST/raw
-
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz to data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ddff481b7d8d4a49b39bb1e1d991b298", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz to data/FashionMNIST/raw
-
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7d8d9b77c46d4b558399cf2e86a9d6e5", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to data/FashionMNIST/raw
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/didi/opt/anaconda3/envs/py3/lib/python3.8/site-packages/torchvision/datasets/mnist.py:498: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  ../torch/csrc/utils/tensor_numpy.cpp:180.)
-  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
 </pre></div>
 </div>
 </div>
@@ -449,15 +519,13 @@ Shape of y:  torch.Size([64]) torch.int64
 </div>
 </div>
 </div>
-<p>Read more about <code class="docutils literal notranslate"><span class="pre">loading</span> <span class="pre">data</span> <span class="pre">in</span> <span class="pre">PyTorch</span> <span class="pre">&lt;data_tutorial.html&gt;</span></code>_.</p>
+<p>Read more about <a class="reference internal" href="data_tutorial.html"><span class="doc std std-doc">loading data in PyTorch</span></a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="creating-models">
 <h2>Creating Models<a class="headerlink" href="#creating-models" title="Permalink to this headline">¶</a></h2>
 <p>To define a neural network in PyTorch, we create a class that inherits
-from <code class="docutils literal notranslate"><span class="pre">nn.Module</span> <span class="pre">&lt;https://pytorch.org/docs/stable/generated/torch.nn.Module.html&gt;</span></code>_. We define the layers of the network
-in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function and specify how data will pass through the network in the <code class="docutils literal notranslate"><span class="pre">forward</span></code> function. To accelerate
-operations in the neural network, we move it to the GPU if available.</p>
+from <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html">nn.Module</a>. We define the layers of the network in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function and specify how data will pass through the network in the <code class="docutils literal notranslate"><span class="pre">forward</span></code> function. To accelerate operations in the neural network, we move it to the GPU if available.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get cpu or gpu device for training.</span>
@@ -475,7 +543,7 @@ operations in the neural network, we move it to the GPU if available.</p>
             <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+<span class="c1">#             nn.ReLU()</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -498,20 +566,19 @@ NeuralNetwork(
     (2): Linear(in_features=512, out_features=512, bias=True)
     (3): ReLU()
     (4): Linear(in_features=512, out_features=10, bias=True)
-    (5): ReLU()
   )
 )
 </pre></div>
 </div>
 </div>
 </div>
-<p>Read more about <code class="docutils literal notranslate"><span class="pre">building</span> <span class="pre">neural</span> <span class="pre">networks</span> <span class="pre">in</span> <span class="pre">PyTorch</span> <span class="pre">&lt;buildmodel_tutorial.html&gt;</span></code>_.</p>
+<p>Read more about <a class="reference internal" href="buildmodel_tutorial.html"><span class="doc std std-doc">building neural networks in PyTorch</span></a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="optimizing-the-model-parameters">
 <h2>Optimizing the Model Parameters<a class="headerlink" href="#optimizing-the-model-parameters" title="Permalink to this headline">¶</a></h2>
-<p>To train a model, we need a <code class="docutils literal notranslate"><span class="pre">loss</span> <span class="pre">function</span> <span class="pre">&lt;https://pytorch.org/docs/stable/nn.html#loss-functions&gt;</span></code>_
-and an <code class="docutils literal notranslate"><span class="pre">optimizer</span> <span class="pre">&lt;https://pytorch.org/docs/stable/optim.html&gt;</span></code>_.</p>
+<p>To train a model, we need a <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">loss function</a>
+and an <a class="reference external" href="https://pytorch.org/docs/stable/optim.html">optimizer</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
@@ -583,85 +650,85 @@ accuracy increase and the loss decrease with every epoch.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
 -------------------------------
-loss: 2.297874  [    0/60000]
-loss: 2.294384  [ 6400/60000]
-loss: 2.281780  [12800/60000]
-loss: 2.282279  [19200/60000]
-loss: 2.263407  [25600/60000]
-loss: 2.238050  [32000/60000]
-loss: 2.247860  [38400/60000]
-loss: 2.221008  [44800/60000]
-loss: 2.218540  [51200/60000]
-loss: 2.188591  [57600/60000]
+loss: 2.301393  [    0/60000]
+loss: 2.284948  [ 6400/60000]
+loss: 2.271133  [12800/60000]
+loss: 2.267325  [19200/60000]
+loss: 2.249124  [25600/60000]
+loss: 2.227210  [32000/60000]
+loss: 2.233070  [38400/60000]
+loss: 2.199889  [44800/60000]
+loss: 2.205915  [51200/60000]
+loss: 2.176664  [57600/60000]
 Test Error: 
- Accuracy: 46.2%, Avg loss: 2.202547 
+ Accuracy: 50.3%, Avg loss: 2.164026 
 
 Epoch 2
 -------------------------------
-loss: 2.198947  [    0/60000]
-loss: 2.212317  [ 6400/60000]
-loss: 2.175085  [12800/60000]
-loss: 2.197036  [19200/60000]
-loss: 2.148994  [25600/60000]
-loss: 2.092971  [32000/60000]
-loss: 2.121465  [38400/60000]
-loss: 2.059605  [44800/60000]
-loss: 2.063204  [51200/60000]
-loss: 2.005229  [57600/60000]
+loss: 2.180436  [    0/60000]
+loss: 2.159493  [ 6400/60000]
+loss: 2.110270  [12800/60000]
+loss: 2.121732  [19200/60000]
+loss: 2.067865  [25600/60000]
+loss: 2.024604  [32000/60000]
+loss: 2.048204  [38400/60000]
+loss: 1.974771  [44800/60000]
+loss: 1.990508  [51200/60000]
+loss: 1.916824  [57600/60000]
 Test Error: 
- Accuracy: 50.4%, Avg loss: 2.040168 
+ Accuracy: 57.6%, Avg loss: 1.905970 
 
 Epoch 3
 -------------------------------
-loss: 2.030556  [    0/60000]
-loss: 2.059910  [ 6400/60000]
-loss: 1.978627  [12800/60000]
-loss: 2.039039  [19200/60000]
-loss: 1.922912  [25600/60000]
-loss: 1.839719  [32000/60000]
-loss: 1.890476  [38400/60000]
-loss: 1.776885  [44800/60000]
-loss: 1.801374  [51200/60000]
-loss: 1.717498  [57600/60000]
+loss: 1.949034  [    0/60000]
+loss: 1.900169  [ 6400/60000]
+loss: 1.796065  [12800/60000]
+loss: 1.827759  [19200/60000]
+loss: 1.714638  [25600/60000]
+loss: 1.675801  [32000/60000]
+loss: 1.698355  [38400/60000]
+loss: 1.602997  [44800/60000]
+loss: 1.633077  [51200/60000]
+loss: 1.526206  [57600/60000]
 Test Error: 
- Accuracy: 52.6%, Avg loss: 1.782509 
+ Accuracy: 63.0%, Avg loss: 1.536935 
 
 Epoch 4
 -------------------------------
-loss: 1.759996  [    0/60000]
-loss: 1.826368  [ 6400/60000]
-loss: 1.694096  [12800/60000]
-loss: 1.814552  [19200/60000]
-loss: 1.639624  [25600/60000]
-loss: 1.547762  [32000/60000]
-loss: 1.623064  [38400/60000]
-loss: 1.480390  [44800/60000]
-loss: 1.523066  [51200/60000]
-loss: 1.446670  [57600/60000]
+loss: 1.609428  [    0/60000]
+loss: 1.555905  [ 6400/60000]
+loss: 1.419476  [12800/60000]
+loss: 1.479234  [19200/60000]
+loss: 1.364549  [25600/60000]
+loss: 1.362150  [32000/60000]
+loss: 1.373842  [38400/60000]
+loss: 1.304989  [44800/60000]
+loss: 1.343342  [51200/60000]
+loss: 1.238450  [57600/60000]
 Test Error: 
- Accuracy: 53.8%, Avg loss: 1.546395 
+ Accuracy: 64.3%, Avg loss: 1.261786 
 
 Epoch 5
 -------------------------------
-loss: 1.496552  [    0/60000]
-loss: 1.624267  [ 6400/60000]
-loss: 1.462322  [12800/60000]
-loss: 1.639004  [19200/60000]
-loss: 1.433527  [25600/60000]
-loss: 1.348073  [32000/60000]
-loss: 1.435951  [38400/60000]
-loss: 1.285082  [44800/60000]
-loss: 1.332069  [51200/60000]
-loss: 1.280796  [57600/60000]
+loss: 1.341780  [    0/60000]
+loss: 1.309828  [ 6400/60000]
+loss: 1.156899  [12800/60000]
+loss: 1.249182  [19200/60000]
+loss: 1.133433  [25600/60000]
+loss: 1.156056  [32000/60000]
+loss: 1.172305  [38400/60000]
+loss: 1.118191  [44800/60000]
+loss: 1.162781  [51200/60000]
+loss: 1.070806  [57600/60000]
 Test Error: 
- Accuracy: 55.5%, Avg loss: 1.394976 
+ Accuracy: 65.1%, Avg loss: 1.091418 
 
 Done!
 </pre></div>
 </div>
 </div>
 </div>
-<p>Read more about <code class="docutils literal notranslate"><span class="pre">Training</span> <span class="pre">your</span> <span class="pre">model</span> <span class="pre">&lt;optimization_tutorial.html&gt;</span></code>_.</p>
+<p>Read more about <a class="reference internal" href="optimization_tutorial.html"><span class="doc std std-doc">Optimizing Model Parameters</span></a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="saving-models">
@@ -729,7 +796,7 @@ the state dictionary into it.</p>
 </div>
 </div>
 </div>
-<p>Read more about <code class="docutils literal notranslate"><span class="pre">Saving</span> <span class="pre">&amp;</span> <span class="pre">Loading</span> <span class="pre">your</span> <span class="pre">model</span> <span class="pre">&lt;saveloadrun_tutorial.html&gt;</span></code>_.</p>
+<p>Read more about <a class="reference internal" href="saveloadrun_tutorial.html"><span class="doc std std-doc">Saving &amp; Loading your model</span></a>.</p>
 </div>
 </div>
 
@@ -737,7 +804,7 @@ the state dictionary into it.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "cancermqiao/CancerMBook.git",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -758,6 +825,8 @@ the state dictionary into it.</p>
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Pytorch Tutorial</a>
+    <a class='right-next' id="next-link" href="tensorqs_tutorial.html" title="next page">1. Tensors</a>
 
         </div>
         
@@ -782,5 +851,15 @@ the state dictionary into it.</p>
   <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </body>
 </html>

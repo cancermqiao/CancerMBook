@@ -4,7 +4,7 @@ title: "CancerM Book"
 author: CancerM Qiao
 email: cancermqiao@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is a book built with Jupyter Books.
+  This is a CancerM's book built with Jupyter Books.
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -13,14 +13,31 @@ bibtex_bibfiles:
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
+  #execute_notebooks: "force"
   execute_notebooks: "cache"
   
+html:
+  google_analytics_id: UA-52617120-7
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://jupyterbook.org/
+
 repository:
   url: https://github.com/cancermqiao/CancerMBook.git
   branch: master
   path_to_book: docs
 
+launch_buttons:
+  notebook_interface: "classic" # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url: "https://mybinder.org"
+  colab_url: "https://colab.research.google.com"
+  thebe: true
+
 parse:
+  myst_substitutions:
+      sub3: My _global_ value!
   myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,
     # including those that are enabled by default!
@@ -83,7 +100,7 @@ sphinx:
         - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
         - null
     rediraffe_branch: 'master'
-    language: ch
+    language: en
     html_extra_path:
       - images/badge.svg
 

@@ -7,7 +7,19 @@ parts:
       sections:
       - file: machine_learning/Machine Learning 2021(李宏毅)/ML2021Spring_HW1
       - file: machine_learning/Machine Learning 2021(李宏毅)/Active Function
+
+    - file: machine_learning/pytorch/intro
+      sections:
+      - file: machine_learning/pytorch/quickstart_tutorial
+      - file: machine_learning/pytorch/tensorqs_tutorial
+      - file: machine_learning/pytorch/data_tutorial
+      - file: machine_learning/pytorch/transforms_tutorial
+      - file: machine_learning/pytorch/buildmodel_tutorial
+      - file: machine_learning/pytorch/autogradqs_tutorial
+      - file: machine_learning/pytorch/optimization_tutorial
+      - file: machine_learning/pytorch/saveloadrun_tutorial
     
+
   - caption: 强化学习(Reinforcement Learning)
     chapters:
     - file: reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview
@@ -27,9 +39,10 @@ parts:
 
   - caption: 编程(Program)
     chapters:
-    - file: program/leetcode/overview
+    - file: program/剑指offer/overview
       sections:
-      - file: program/leetcode/sort
+      - file: program/剑指offer/数组分割
+      - file: program/剑指offer/第k大的数
   
   - caption: 已读文章(Paper Read)
     chapters:

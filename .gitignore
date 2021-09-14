@@ -3,3 +3,4 @@ docs/machine_learning/Machine\ Learning\ 2021\(李宏毅\)/data/
 *.pdf
 *.csv
 *.pth
+*.onnx

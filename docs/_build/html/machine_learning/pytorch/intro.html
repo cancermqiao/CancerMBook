@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learn the Basics &#8212; CancerM Book</title>
+    <title>Pytorch Tutorial &#8212; CancerM Book</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,17 +41,21 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://jupyterbook.org/machine_learning/pytorch/intro.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="0. Quickstart" href="quickstart_tutorial.html" />
+    <link rel="prev" title="常用激活函数" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -78,19 +83,12 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing_page.html">
-   欢迎来到CancerM Book
-  </a>
- </li>
-</ul>
-<p class="caption">
+        <p class="caption">
  <span class="caption-text">
   机器学习(Machine Learning)
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/overview.html">
    Machine Learning 2021(李宏毅)
@@ -103,14 +101,69 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/ML2021Spring_HW1.html">
-     <strong>
-      Homework 1: COVID-19 Cases Prediction (Regression)
-     </strong>
+     Homework 1: COVID-19 Cases Prediction (Regression)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html">
      常用激活函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Pytorch Tutorial
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="quickstart_tutorial.html">
+     0. Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tensorqs_tutorial.html">
+     1. Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_tutorial.html">
+     2. Datasets &amp; DataLoaders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transforms_tutorial.html">
+     3. Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="buildmodel_tutorial.html">
+     4. Build the Neural Network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="autogradqs_tutorial.html">
+     5. Automatic Differentiation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Torch.autograd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimization_tutorial.html">
+     6. Optimizing Model Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="saveloadrun_tutorial.html">
+     7. Save and Load the Model
     </a>
    </li>
   </ul>
@@ -126,8 +179,8 @@
   <a class="reference internal" href="../../reinforcement_learning/ucl_course_on_rl_by_David_Silver/overview.html">
    UCL Course on RL
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -155,8 +208,8 @@
   <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/overview.html">
    Introduction to Causal Inference
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -169,6 +222,45 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch2.html">
      2 Potential Outcomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch3.html">
+     3. The Flow of Association and Causation in Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../causal_inference/introduction_to_causal_inference/ch4.html">
+     4. Causal Models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  编程(Program)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
+   剑指offer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E5%88%86%E5%89%B2.html">
+     数组分割
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0.html">
+     第K大的数
     </a>
    </li>
   </ul>
@@ -184,8 +276,8 @@
   <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
    Here’s my sample title
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -254,6 +346,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/cancermqiao/CancerMBook.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/cancermqiao/CancerMBook.git/issues/new?title=Issue%20on%20page%20%2Fmachine_learning/pytorch/intro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/cancermqiao/CancerMBook.git/edit/master/docs/machine_learning/pytorch/intro.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -268,7 +378,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/machine_learning/pytorch/intro.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cancermqiao/CancerMBook.git/master?urlpath=tree/docs/machine_learning/pytorch/intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -276,6 +386,14 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/cancermqiao/CancerMBook.git/blob/master/docs/machine_learning/pytorch/intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -290,6 +408,11 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learn-the-basics">
+   Learn the Basics
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-the-tutorial-code">
    Running the Tutorial Code
@@ -311,23 +434,16 @@
         
               <div>
                 
-  <p><strong>Learn the Basics</strong> ||
-<code class="docutils literal notranslate"><span class="pre">Quickstart</span> <span class="pre">&lt;quickstart_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Tensors</span> <span class="pre">&lt;tensorqs_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Datasets</span> <span class="pre">&amp;</span> <span class="pre">DataLoaders</span> <span class="pre">&lt;data_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Transforms</span> <span class="pre">&lt;transforms_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Model</span> <span class="pre">&lt;buildmodel_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Autograd</span> <span class="pre">&lt;autogradqs_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Optimization</span> <span class="pre">&lt;optimization_tutorial.html&gt;</span></code>_ ||
-<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">&amp;</span> <span class="pre">Load</span> <span class="pre">Model</span> <span class="pre">&lt;saveloadrun_tutorial.html&gt;</span></code>_</p>
+  <div class="section" id="pytorch-tutorial">
+<h1>Pytorch Tutorial<a class="headerlink" href="#pytorch-tutorial" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="learn-the-basics">
-<h1>Learn the Basics<a class="headerlink" href="#learn-the-basics" title="Permalink to this headline">¶</a></h1>
+<h2>Learn the Basics<a class="headerlink" href="#learn-the-basics" title="Permalink to this headline">¶</a></h2>
 <p>Authors:
-<code class="docutils literal notranslate"><span class="pre">Suraj</span> <span class="pre">Subramanian</span> <span class="pre">&lt;https://github.com/suraj813&gt;</span></code><em>,
-<code class="docutils literal notranslate"><span class="pre">Seth</span> <span class="pre">Juarez</span> <span class="pre">&lt;https://github.com/sethjuarez/&gt;</span></code></em>,
-<code class="docutils literal notranslate"><span class="pre">Cassie</span> <span class="pre">Breviu</span> <span class="pre">&lt;https://github.com/cassieview/&gt;</span></code><em>,
-<code class="docutils literal notranslate"><span class="pre">Dmitry</span> <span class="pre">Soshnikov</span> <span class="pre">&lt;https://soshnikov.com/&gt;</span></code></em>,
-<code class="docutils literal notranslate"><span class="pre">Ari</span> <span class="pre">Bornstein</span> <span class="pre">&lt;https://github.com/aribornstein/&gt;</span></code>_</p>
+<a class="reference external" href="https://github.com/suraj813">Suraj Subramanian</a>,
+<a class="reference external" href="https://github.com/sethjuarez/">Seth Juarez</a>,
+<a class="reference external" href="https://github.com/cassieview/">Cassie Breviu</a>,
+<a class="reference external" href="https://soshnikov.com/">Dmitry Soshnikov</a>,
+<a class="reference external" href="https://github.com/aribornstein/">Ari Bornstein</a></p>
 <p>Most machine learning workflows involve working with data, creating models, optimizing model
 parameters, and saving the trained models. This tutorial introduces you to a complete ML workflow
 implemented in PyTorch, with links to learn more about each of these concepts.</p>
@@ -335,22 +451,31 @@ implemented in PyTorch, with links to learn more about each of these concepts.</
 to one of the following classes: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker,
 Bag, or Ankle boot.</p>
 <p><code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">tutorial</span> <span class="pre">assumes</span> <span class="pre">a</span> <span class="pre">basic</span> <span class="pre">familiarity</span> <span class="pre">with</span> <span class="pre">Python</span> <span class="pre">and</span> <span class="pre">Deep</span> <span class="pre">Learning</span> <span class="pre">concepts.</span></code></p>
+</div>
 <div class="section" id="running-the-tutorial-code">
 <h2>Running the Tutorial Code<a class="headerlink" href="#running-the-tutorial-code" title="Permalink to this headline">¶</a></h2>
 <p>You can run this tutorial in a couple of ways:</p>
 <ul class="simple">
 <li><p><strong>In the cloud</strong>: This is the easiest way to get started! Each section has a “Run in Microsoft Learn” link at the top, which opens an integrated notebook in Microsoft Learn with the code in a fully-hosted environment.</p></li>
-<li><p><strong>Locally</strong>: This option requires you to setup PyTorch and TorchVision first on your local machine (<code class="docutils literal notranslate"><span class="pre">installation</span> <span class="pre">instructions</span> <span class="pre">&lt;https://pytorch.org/get-started/locally/&gt;</span></code>_). Download the notebook or copy the code into your favorite IDE.</p></li>
+<li><p><strong>Locally</strong>: This option requires you to setup PyTorch and TorchVision first on your local machine (<a class="reference external" href="https://pytorch.org/get-started/locally/">installation instructions</a>). Download the notebook or copy the code into your favorite IDE.</p></li>
 </ul>
 </div>
 <div class="section" id="how-to-use-this-guide">
 <h2>How to Use this Guide<a class="headerlink" href="#how-to-use-this-guide" title="Permalink to this headline">¶</a></h2>
-<p>If you’re familiar with other deep learning frameworks, check out the <code class="docutils literal notranslate"><span class="pre">0.</span> <span class="pre">Quickstart</span> <span class="pre">&lt;quickstart_tutorial.html&gt;</span></code>_ first
-to quickly familiarize yourself with PyTorch’s API.</p>
-<p>If you’re new to deep learning frameworks, head right into the first section of our step-by-step guide: <code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">Tensors</span> <span class="pre">&lt;tensor_tutorial.html&gt;</span></code>_.</p>
-<p>… include:: /beginner_source/basics/qs_toc.txt</p>
-<p>… toctree::
-:hidden:</p>
+<p>If you’re familiar with other deep learning frameworks, check out the <a class="reference internal" href="quickstart_tutorial.html"><span class="doc std std-doc">0. QuickStart</span></a> first to quickly familiarize yourself with PyTorch’s API.</p>
+<p>If you’re new to deep learning frameworks, head right into the first section of our step-by-step guide: <a class="reference internal" href="tensorqs_tutorial.html"><span class="doc std std-doc">1. Tensors</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_tutorial.html">0. Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorqs_tutorial.html">1. Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_tutorial.html">2. Datasets &amp; DataLoaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms_tutorial.html">3. Transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="buildmodel_tutorial.html">4. Build the Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autogradqs_tutorial.html">5. Automatic Differentiation with <code class="docutils literal notranslate"><span class="pre">Torch.autograd</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_tutorial.html">6. Optimizing Model Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saveloadrun_tutorial.html">7. Save and Load the Model</a></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -358,7 +483,7 @@ to quickly familiarize yourself with PyTorch’s API.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "cancermqiao/CancerMBook.git",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -379,6 +504,8 @@ to quickly familiarize yourself with PyTorch’s API.</p>
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="../Machine%20Learning%202021%28%E6%9D%8E%E5%AE%8F%E6%AF%85%29/Active%20Function.html" title="previous page">常用激活函数</a>
+    <a class='right-next' id="next-link" href="quickstart_tutorial.html" title="next page">0. Quickstart</a>
 
         </div>
         
@@ -403,5 +530,15 @@ to quickly familiarize yourself with PyTorch’s API.</p>
   <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-52617120-7', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </body>
 </html>

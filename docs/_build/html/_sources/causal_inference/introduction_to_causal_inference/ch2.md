@@ -9,7 +9,7 @@
 
 #### Individual Treatment Eﬀect (ITE)
 
-    个体$i$的ITE：
+个体$i$的ITE：
 
 $$\tau_i \triangleq Y_i(1)-Y_i(0)$$
 
@@ -92,11 +92,11 @@ $T$和$Y$之间的非因果关联是通过$T \leftarrow X \rightarrow Y$传递�
 
 有了conditional exchangeability的假设，可以得到$X$级别上的causal effect，
 
-$$\begin{split}\mathbb{E}[Y(1)-Y(0)|X]&=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{split}$$
+$$\begin{align}\mathbb{E}[Y(1)-Y(0)|X]&=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}$$
 
 在conditional exchangeability的假设下，遍历$X$可以到边际效应，
 
-$$\begin{split}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{split}$$
+$$\begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}$$
 
 #### **Theorem 2.1** (Adjustment Formula) Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:
 
@@ -114,7 +114,7 @@ $$0<P(T=1|X=x)<1$$
 
 用Bayes拆解后，分母中不能为0
 
-$$\begin{split}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{split}$$
+$$\begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}$$
 
 如果数据中的一个子集都是treatment或者control，那么就无法估计其causal effect。
 
