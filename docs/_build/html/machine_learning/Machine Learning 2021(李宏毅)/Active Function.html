@@ -625,8 +625,8 @@ f^\prime(x)&amp;=\frac{e^{-x}}{(1+e^{-x})^2} \\
 <h2>2. ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id5">
 <h3>2.1 表达式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-f848f163-6cb2-451f-ba2f-9821add50b5f">
-<span class="eqno">(3)<a class="headerlink" href="#equation-f848f163-6cb2-451f-ba2f-9821add50b5f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16167ee1-113a-427b-9b8b-168da67f0afd">
+<span class="eqno">(3)<a class="headerlink" href="#equation-16167ee1-113a-427b-9b8b-168da67f0afd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f(x)=\begin{cases} 
 x,  &amp; \mbox{if }x\gt 0 \\
 0, &amp; \mbox{if }x\le 0
@@ -635,8 +635,8 @@ x,  &amp; \mbox{if }x\gt 0 \\
 </div>
 <div class="section" id="id6">
 <h3>2.2 导数式<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-676c6d8d-f559-488b-90f6-b3be1e1ad6ff">
-<span class="eqno">(4)<a class="headerlink" href="#equation-676c6d8d-f559-488b-90f6-b3be1e1ad6ff" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a4196047-4201-400d-b2f1-f6b5343037af">
+<span class="eqno">(4)<a class="headerlink" href="#equation-a4196047-4201-400d-b2f1-f6b5343037af" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f^\prime(x)=\begin{cases} 
 1,  &amp; \mbox{if }x\gt 0 \\
 0, &amp; \mbox{if }x\le 0
@@ -853,8 +853,8 @@ f^\prime(x)=\frac{e^x}{1+e^x}
 <ol class="simple">
 <li><p>Leaky ReLU</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-e1f16936-7f57-4d42-a3a6-826b0dbad2c0">
-<span class="eqno">(7)<a class="headerlink" href="#equation-e1f16936-7f57-4d42-a3a6-826b0dbad2c0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4cd20319-1b7f-4d51-bd5b-c82a9218849b">
+<span class="eqno">(7)<a class="headerlink" href="#equation-4cd20319-1b7f-4d51-bd5b-c82a9218849b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f(x)=\begin{cases} 
 x,  &amp; \mbox{if }x\gt 0 \\
 0.01x, &amp; \mbox{if }x\le 0
@@ -864,8 +864,8 @@ x,  &amp; \mbox{if }x\gt 0 \\
 <ol class="simple">
 <li><p>Parametric ReLU</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-cde88326-9d04-4caf-a4e8-6ad10659a152">
-<span class="eqno">(8)<a class="headerlink" href="#equation-cde88326-9d04-4caf-a4e8-6ad10659a152" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c5d970f9-f388-406f-9afe-65bf8dd5fba3">
+<span class="eqno">(8)<a class="headerlink" href="#equation-c5d970f9-f388-406f-9afe-65bf8dd5fba3" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f(x)=\begin{cases} 
 x,  &amp; \mbox{if }x\gt 0 \\
 \alpha\cdot x, &amp; \mbox{if }x\le 0
@@ -1003,8 +1003,8 @@ f(x_i)=\frac{e^{x_i}}{\sum_j{e^{x_j}}}
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_i\)</span>自身微分</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-3025b814-cd76-4284-a05d-18d47a19ecf2">
-<span class="eqno">(11)<a class="headerlink" href="#equation-3025b814-cd76-4284-a05d-18d47a19ecf2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-efc183b7-aae2-4440-94df-f304d8061615">
+<span class="eqno">(11)<a class="headerlink" href="#equation-efc183b7-aae2-4440-94df-f304d8061615" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{split}\frac{\partial{f(x_i)}}{\partial{x_i}}&amp;=\frac{e^{x_i}\cdot \sum_j{e^{x_j}} - e^{x_i}\cdot e^{x_i}}{\left(\sum_j{e^{x_j}}\right)^2} \\
 &amp;=f(x_i)\cdot\left(1-f(x_i)\right)
 \end{split}
@@ -1012,8 +1012,8 @@ f(x_i)=\frac{e^{x_i}}{\sum_j{e^{x_j}}}
 <ul class="simple">
 <li><p>当<span class="math notranslate nohighlight">\(i\ne k\)</span>时</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-775b391f-a07b-40bf-bef6-b03a963f98c1">
-<span class="eqno">(12)<a class="headerlink" href="#equation-775b391f-a07b-40bf-bef6-b03a963f98c1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0c9a3d4a-4a2f-4185-85da-870e4d72b97e">
+<span class="eqno">(12)<a class="headerlink" href="#equation-0c9a3d4a-4a2f-4185-85da-870e4d72b97e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{split}\frac{\partial{f(x_i)}}{\partial{x_k}}&amp;=-e^{x_i}\cdot\frac{e^{x_k}}{\left(\sum_j{e^{x_j}}\right)^2} \\
 &amp;=-f(x_i)\cdot f(x_k)
 \end{split}
