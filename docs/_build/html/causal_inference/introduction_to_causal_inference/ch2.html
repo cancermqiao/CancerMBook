@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -44,15 +44,15 @@
     <script src="../../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://jupyterbook.org/causal_inference/introduction_to_causal_inference/ch2.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -83,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -238,6 +238,23 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../causal_inference_and_learning/overview.html">
+   Causal Inference and Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../causal_inference_and_learning/computational_and_thinking.html">
+     0. Computational and Inferential thinking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -249,8 +266,8 @@
   <a class="reference internal" href="../../program/%E5%89%91%E6%8C%87offer/overview.html">
    剑指offer
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -267,6 +284,23 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../program/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/overview.html">
+   排序算法
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../program/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/sort.html">
+     快速排序
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -278,8 +312,8 @@
   <a class="reference internal" href="../../papers/reinforcement_learning/overview.html">
    Here’s my sample title
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -408,7 +442,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#potential-outcomes-and-individual-treatment-effects">
@@ -461,13 +495,11 @@
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ignorability-and-exchangeability">
-   2.3.2 Ignorability and Exchangeability
-  </a>
-  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ignorability-and-exchangeability">
+     2.3.2 Ignorability and Exchangeability
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#conditional-exchangeability-and-unconfoundedness">
      2.3.3 Conditional Exchangeability and Unconfoundedness
@@ -590,9 +622,8 @@
 <a class="reference internal image-reference" href="../../_images/2.1.png"><img alt="../../_images/2.1.png" src="../../_images/2.1.png" style="width: 400px;" /></a>
 </div>
 </div>
-</div>
 <div class="section" id="ignorability-and-exchangeability">
-<h2>2.3.2 Ignorability and Exchangeability<a class="headerlink" href="#ignorability-and-exchangeability" title="Permalink to this headline">¶</a></h2>
+<h3>2.3.2 Ignorability and Exchangeability<a class="headerlink" href="#ignorability-and-exchangeability" title="Permalink to this headline">¶</a></h3>
 <p>如何让associational difference等于ATE？</p>
 <p>给予受试者随机的treatment，去除受试者对treatment选择的影响</p>
 <a class="reference internal image-reference" href="../../_images/2.2.png"><img alt="../../_images/2.2.png" src="../../_images/2.2.png" style="width: 400px;" /></a>
@@ -618,6 +649,7 @@
 <p class="admonition-title">Deﬁnition 2.1 (Identiﬁability)</p>
 <p>A causal quantity ( <span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y(t)]\)</span>) is identiﬁable if we can compute it from a purely statistical quantity (<span class="math notranslate nohighlight">\(e.g.\ \mathbb{E}[Y|t]\)</span>).</p>
 </div>
+</div>
 <div class="section" id="conditional-exchangeability-and-unconfoundedness">
 <h3>2.3.3 Conditional Exchangeability and Unconfoundedness<a class="headerlink" href="#conditional-exchangeability-and-unconfoundedness" title="Permalink to this headline">¶</a></h3>
 <div class="note admonition">
@@ -630,15 +662,16 @@
 <p>当以<span class="math notranslate nohighlight">\(X\)</span>作为条件时，就不存在非因果关联了，如图2.4所示，称之为conditional exchangeability。</p>
 <a class="reference internal image-reference" href="../../_images/2.4.png"><img alt="../../_images/2.4.png" src="../../_images/2.4.png" style="width: 400px;" /></a>
 <p>有了conditional exchangeability的假设，可以得到<span class="math notranslate nohighlight">\(X\)</span>级别上的causal effect，</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)|X]&amp;=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&amp;=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&amp;=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}\end{split}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-c2cdfd06-2220-4475-8a47-260b55dc73ef">
+<span class="eqno">(14)<a class="headerlink" href="#equation-c2cdfd06-2220-4475-8a47-260b55dc73ef" title="Permalink to this equation">¶</a></span>\[\begin{align}\mathbb{E}[Y(1)-Y(0)|X]&amp;=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&amp;=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&amp;=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}\]</div>
 <p>在conditional exchangeability的假设下，遍历<span class="math notranslate nohighlight">\(X\)</span>可以到边际效应，</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}\end{split}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-c531e29c-e117-4d03-bf24-8215d5ee6068">
+<span class="eqno">(15)<a class="headerlink" href="#equation-c531e29c-e117-4d03-bf24-8215d5ee6068" title="Permalink to this equation">¶</a></span>\[\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}\]</div>
 <div class="important admonition">
 <p class="admonition-title">Theorem 2.1 (Adjustment Formula)</p>
-<p>Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:
-$<span class="math notranslate nohighlight">\(\mathbb{E}[Y(1) − Y(0)] = \mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\)</span>$</p>
+<p>Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}[Y(1) − Y(0)] = \mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\]</div>
 </div>
 </div>
 <div class="section" id="positivity-overlap-and-extrapolation">
@@ -652,8 +685,8 @@ $<span class="math notranslate nohighlight">\(\mathbb{E}[Y(1) − Y(0)] = \mathb
 <div class="section" id="positivity-overlap-common-support">
 <h4>positivity/overlap/common support<a class="headerlink" href="#positivity-overlap-common-support" title="Permalink to this headline">¶</a></h4>
 <p>用Bayes拆解后，分母中不能为0</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&amp;=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&amp;=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}\end{split}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-fb06a379-63b2-4cf1-8fa0-2e1cc9946d7e">
+<span class="eqno">(16)<a class="headerlink" href="#equation-fb06a379-63b2-4cf1-8fa0-2e1cc9946d7e" title="Permalink to this equation">¶</a></span>\[\begin{align}\mathbb{E}[Y(1)-Y(0)]&amp;=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&amp;=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&amp;=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}\]</div>
 <p>如果数据中的一个子集都是treatment或者control，那么就无法估计其causal effect。</p>
 </div>
 <div class="section" id="the-positivity-unconfoundedness-tradeoff">
@@ -747,8 +780,8 @@ $<span class="math notranslate nohighlight">\(\mathbb{E}[Y(1) − Y(0)] = \mathb
         <span class="n">Xt0</span><span class="p">[</span><span class="n">Xt</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">treatment_idx</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xt1</span><span class="p">)</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xt0</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="n">binary_t_df</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">beta1</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">alpha1</span><span class="o">=.</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha2</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">binary_treatment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
-<span class="n">continuous_t_df</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">beta1</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">alpha1</span><span class="o">=.</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha2</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">binary_treatment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
+<span class="n">binary_t_df</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">beta1</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">alpha1</span><span class="o">=</span><span class="mf">.4</span><span class="p">,</span> <span class="n">alpha2</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span> <span class="n">binary_treatment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
+<span class="n">continuous_t_df</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">beta1</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">alpha1</span><span class="o">=</span><span class="mf">.4</span><span class="p">,</span> <span class="n">alpha2</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span> <span class="n">binary_treatment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
 
 <span class="n">ate_est_naive</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">ate_est_adjust_all</span> <span class="o">=</span> <span class="kc">None</span>
@@ -846,12 +879,32 @@ ATE estimate adjusting for age:				 1.0497716562238382
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch1.html" title="previous page">1. Motivation: Why You Might Care</a>
-    <a class='right-next' id="next-link" href="ch3.html" title="next page">3. The Flow of Association and Causation in Graphs</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="ch1.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">1. Motivation: Why You Might Care</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="ch3.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">3. The Flow of Association and Causation in Graphs</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

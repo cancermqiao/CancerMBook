@@ -41,7 +41,7 @@
 # 
 # <img src="images/ch2/2.1.png" width=400px />
 
-# ## 2.3.2 Ignorability and Exchangeability
+# ### 2.3.2 Ignorability and Exchangeability
 # 
 # 如何让associational difference等于ATE？
 # 
@@ -51,8 +51,8 @@
 # 
 # ```{admonition} Assumption 2.1 (Ignorability / Exchangeability)
 # :class: note
-# $$(Y(1),Y(0))\amalg T$$
 # 
+# $$(Y(1),Y(0))\amalg T$$
 # ```
 # 
 # 这个假设是因果推断的关键，可以将ATE转换为associational difference：
@@ -93,19 +93,19 @@
 # 当以$X$作为条件时，就不存在非因果关联了，如图2.4所示，称之为conditional exchangeability。
 # 
 # <img src="images/ch2/2.4.png" width=400px />
-# 
-# 
+
 # 有了conditional exchangeability的假设，可以得到$X$级别上的causal effect，
 # 
-# $$\begin{align}\mathbb{E}[Y(1)-Y(0)|X]&=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}$$
+# \begin{align}\mathbb{E}[Y(1)-Y(0)|X]&=\mathbb{E}[Y(1)|X]-\mathbb{E}[Y(0)|X]\\&=\mathbb{E}[Y(1)|T=1,X]-\mathbb{E}[Y(0)|T=0,X]\\&=\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X] \end{align}
 # 
 # 在conditional exchangeability的假设下，遍历$X$可以到边际效应，
 # 
-# $$\begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}$$
-# 
+# \begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X\mathbb{E}[Y(1)-Y(0)|X]\\&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\end{align}
+
 # ```{admonition} Theorem 2.1 (Adjustment Formula) 
 # :class: important
 # Given the assumptions of unconfoundedness, positivity, consistency, and no interference, we can identify the average treatment eﬀect:
+# 
 # $$\mathbb{E}[Y(1) − Y(0)] = \mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]$$
 # ```
 
@@ -122,7 +122,7 @@
 # 
 # 用Bayes拆解后，分母中不能为0
 # 
-# $$\begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}$$
+# \begin{align}\mathbb{E}[Y(1)-Y(0)]&=\mathbb{E}_X[\mathbb{E}[Y|T=1,X]-\mathbb{E}[Y|T=0,X]]\\&=\sum_XP(X=x)\left(\sum_yyP(Y=y|T=1,X=x)-\sum_yyP(Y=y|T=0,X=x)\right)\\&=\sum_xp(X=x)\left(\sum_yy\frac{P(Y=y,T=1,X=x)}{P(T=1|X=x)P(X=x)}-\sum_yy\frac{P(Y=y,T=0,X=x)}{P(T=0|X=x)P(X=x)}\right)\end{align}
 # 
 # 如果数据中的一个子集都是treatment或者control，那么就无法估计其causal effect。
 # 

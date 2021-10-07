@@ -1,3 +1,5 @@
+__pycache__/
+.ipynb_checkpoints/
 docs/machine_learning/pytorch/data/
 docs/machine_learning/Machine\ Learning\ 2021\(李宏毅\)/data/
 *.pdf

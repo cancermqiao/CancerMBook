@@ -6,7 +6,6 @@
 # * Slides: https://speech.ee.ntu.edu.tw/~hylee/ml/ml2021-course-data/hw/HW02/HW02.pdf
 # * Video (Chinese): https://youtu.be/PdjXnQbu2zo
 # * Video (English): https://youtu.be/ESRr-VCykBs
-# 
 
 # ## The DARPA TIMIT Acoustic-Phonetic Continuous Speech Corpus (TIMIT)
 # The TIMIT corpus of reading speech has been designed to provide speech data for the acquisition of acoustic-phonetic knowledge and for the development and evaluation of automatic speech recognition systems.
@@ -26,29 +25,26 @@
 # - `test_11.npy`:  testing data<br><br>
 # 
 # **notes: if the google drive link is dead, you can download the data directly from Kaggle and upload it to the workspace**
-# 
-# 
-# 
 
-# In[1]:
+# In[5]:
 
 
-get_ipython().system("gdown --id '1HPkcmQmFGu-3OknddKIa5dNDsR05lIQR' --output data.zip")
-get_ipython().system('unzip data.zip')
-get_ipython().system('ls ')
+get_ipython().system("gdown --id '1HPkcmQmFGu-3OknddKIa5dNDsR05lIQR' --output data/data.zip")
+get_ipython().system('unzip data/data.zip -d data')
+get_ipython().system('ls data')
 
 
 # ## Preparing Data
 # Load the training and testing data from the `.npy` file (NumPy array).
 
-# In[2]:
+# In[6]:
 
 
 import numpy as np
 
 print('Loading data ...')
 
-data_root='./timit_11/'
+data_root='./data/timit_11/'
 train = np.load(data_root + 'train_11.npy')
 train_label = np.load(data_root + 'train_label_11.npy')
 test = np.load(data_root + 'test_11.npy')
@@ -59,7 +55,7 @@ print('Size of testing data: {}'.format(test.shape))
 
 # ## Create Dataset
 
-# In[ ]:
+# In[7]:
 
 
 import torch
@@ -86,7 +82,7 @@ class TIMITDataset(Dataset):
 
 # Split the labeled data into a training set and a validation set, you can modify the variable `VAL_RATIO` to change the ratio of validation data.
 
-# In[ ]:
+# In[8]:
 
 
 VAL_RATIO = 0.2
@@ -99,7 +95,7 @@ print('Size of validation set: {}'.format(val_x.shape))
 
 # Create a data loader from the dataset, feel free to tweak the variable `BATCH_SIZE` here.
 
-# In[ ]:
+# In[9]:
 
 
 BATCH_SIZE = 64
@@ -108,15 +104,18 @@ from torch.utils.data import DataLoader
 
 train_set = TIMITDataset(train_x, train_y)
 val_set = TIMITDataset(val_x, val_y)
-train_loader = DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True) #only shuffle the training data
+train_loader = DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True) # only shuffle the training data
 val_loader = DataLoader(val_set, batch_size=BATCH_SIZE, shuffle=False)
 
 
 # Cleanup the unneeded variables to save memory.<br>
 # 
-# **notes: if you need to use these variables later, then you may remove this block or clean up unneeded variables later<br>the data size is quite huge, so be aware of memory usage in colab**
+# ```{admonition} notes
+# :class: note
+# if you need to use these variables later, then you may remove this block or clean up unneeded variables later.<br>The data size is quite huge, so be aware of memory usage in colab.
+# ```
 
-# In[ ]:
+# In[10]:
 
 
 import gc
@@ -129,7 +128,7 @@ gc.collect()
 
 # Define model architecture, you are encouraged to change and experiment with the model architecture.
 
-# In[ ]:
+# In[11]:
 
 
 import torch
@@ -162,17 +161,17 @@ class Classifier(nn.Module):
 
 # ## Training
 
-# In[ ]:
+# In[12]:
 
 
-#check device
+# check device
 def get_device():
-  return 'cuda' if torch.cuda.is_available() else 'cpu'
+    return 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
 # Fix random seeds for reproducibility.
 
-# In[ ]:
+# In[13]:
 
 
 # fix random seed
@@ -188,9 +187,10 @@ def same_seeds(seed):
 
 # Feel free to change the training parameters here.
 
-# In[ ]:
+# In[20]:
 
 
+import os
 # fix random seed for reproducibility
 same_seeds(0)
 
@@ -203,7 +203,9 @@ num_epoch = 20               # number of training epoch
 learning_rate = 0.0001       # learning rate
 
 # the path where checkpoint saved
-model_path = './model.ckpt'
+model_root = './models/hw2/'
+os.makedirs(model_root, exist_ok=True)
+model_path = os.path.join(model_root, "model.ckpt")
 
 # create model, define a loss function, and optimizer
 model = Classifier().to(device)
@@ -211,7 +213,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 
-# In[ ]:
+# In[21]:
 
 
 # start training
@@ -276,7 +278,7 @@ if len(val_set) == 0:
 
 # Create a testing dataset, and load model from the saved checkpoint.
 
-# In[ ]:
+# In[22]:
 
 
 # create testing dataset
@@ -290,7 +292,7 @@ model.load_state_dict(torch.load(model_path))
 
 # Make prediction.
 
-# In[ ]:
+# In[23]:
 
 
 predict = []
@@ -310,10 +312,14 @@ with torch.no_grad():
 # 
 # After finish running this block, download the file `prediction.csv` from the files section on the left-hand side and submit it to Kaggle.
 
-# In[ ]:
+# In[24]:
 
 
-with open('prediction.csv', 'w') as f:
+pred_root = "preds/hw2"
+os.makedirs(pred_root, exist_ok=True)
+pred_path = os.path.join(pred_root, "prediction.csv")
+
+with open(pred_path, 'w') as f:
     f.write('Id,Class\n')
     for i, y in enumerate(predict):
         f.write('{},{}\n'.format(i, y))

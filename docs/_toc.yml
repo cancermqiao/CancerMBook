@@ -36,6 +36,10 @@ parts:
         - file: causal_inference/introduction_to_causal_inference/ch3
         - file: causal_inference/introduction_to_causal_inference/ch4
         
+    - file: causal_inference/causal_inference_and_learning/overview
+      sections:
+        - file: causal_inference/causal_inference_and_learning/computational_and_thinking
+
 
   - caption: 编程(Program)
     chapters:
@@ -43,7 +47,12 @@ parts:
       sections:
       - file: program/剑指offer/数组分割
       - file: program/剑指offer/第k大的数
+
+    - file: program/排序算法/overview
+      sections:
+      - file: program/排序算法/sort
   
+
   - caption: 已读文章(Paper Read)
     chapters:
     - file: papers/reinforcement_learning/overview.md

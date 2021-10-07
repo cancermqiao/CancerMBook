@@ -21,7 +21,7 @@
 # 
 # If the Google drive links are dead, you can download data from [kaggle](https://www.kaggle.com/c/ml2021spring-hw1/data), and upload data manually to the workspace.
 
-# In[1]:
+# In[13]:
 
 
 tr_path = 'data/covid.train.csv'  # path to training data
@@ -33,7 +33,7 @@ tt_path = 'data/covid.test.csv'   # path to testing data
 
 # ## 2. Import Some Packages
 
-# In[2]:
+# In[82]:
 
 
 # PyTorch
@@ -48,8 +48,7 @@ import os
 
 import pandas as pd
 # For plotting
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
+
 import altair as alt
 alt.data_transformers.disable_max_rows()
 
@@ -66,27 +65,12 @@ if torch.cuda.is_available():
 # 
 # You do not need to modify this part.
 
-# In[3]:
+# In[83]:
 
 
 def get_device():
     ''' Get device (if GPU is available, use GPU) '''
     return 'cuda' if torch.cuda.is_available() else 'cpu'
-
-# def plot_learning_curve(loss_record, title=''):
-#     ''' Plot learning curve of your DNN (train & dev loss) '''
-#     total_steps = len(loss_record['train'])
-#     x_1 = range(total_steps)
-#     x_2 = x_1[::len(loss_record['train']) // len(loss_record['dev'])]
-#     figure(figsize=(6, 4))
-#     plt.plot(x_1, loss_record['train'], c='tab:red', label='train')
-#     plt.plot(x_2, loss_record['dev'], c='tab:cyan', label='dev')
-#     plt.ylim(0.0, 5.)
-#     plt.xlabel('Training steps')
-#     plt.ylabel('MSE loss')
-#     plt.title('Learning curve of {}'.format(title))
-#     plt.legend()
-#     plt.show()
     
 def plot_learning_curve(loss_record, title=''):
     ''' Plot learning curve of your DNN (train & dev loss) '''
@@ -121,40 +105,31 @@ def plot_pred(dv_set, model, device, lim=35., preds=None, targets=None):
                 targets.append(y.detach().cpu())
         preds = torch.cat(preds, dim=0).numpy()
         targets = torch.cat(targets, dim=0).numpy()
-
-    figure(figsize=(5, 5))
-    plt.scatter(targets, preds, c='r', alpha=0.5)
-    plt.plot([-0.2, lim], [-0.2, lim], c='b')
-    plt.xlim(-0.2, lim)
-    plt.ylim(-0.2, lim)
-    plt.xlabel('ground truth value')
-    plt.ylabel('predicted value')
-    plt.title('Ground Truth v.s. Prediction')
-    plt.show()
     
-def plot_pred(dv_set, model, device, lim=35., preds=None, targets=None):
-    ''' Plot prediction of your DNN '''
-    if preds is None or targets is None:
-        model.eval()
-        preds, targets = [], []
-        for x, y in dv_set:
-            x, y = x.to(device), y.to(device)
-            with torch.no_grad():
-                pred = model(x)
-                preds.append(pred.detach().cpu())
-                targets.append(y.detach().cpu())
-        preds = torch.cat(preds, dim=0).numpy()
-        targets = torch.cat(targets, dim=0).numpy()
-
-    figure(figsize=(5, 5))
-    plt.scatter(targets, preds, c='r', alpha=0.5)
-    plt.plot([-0.2, lim], [-0.2, lim], c='b')
-    plt.xlim(-0.2, lim)
-    plt.ylim(-0.2, lim)
-    plt.xlabel('ground truth value')
-    plt.ylabel('predicted value')
-    plt.title('Ground Truth v.s. Prediction')
-    plt.show()
+    data = pd.DataFrame({
+        "ground truth value": targets,
+        "predicted value": preds
+    })
+    
+    as_data = pd.DataFrame({
+        "ground truth value": [0, 36],
+        "predicted value": [0, 36]
+    })
+    
+    return alt.Chart(data, title='Ground Truth v.s. Prediction').mark_point(color="red",clip=True).encode(
+            x=alt.X("ground truth value:Q", scale=alt.Scale(domain=(0, lim))),
+            y=alt.Y("predicted value:Q", scale=alt.Scale(domain=(0, lim))),
+        ).properties(
+            width=400,
+            height=400,
+        ) +\
+        alt.Chart(as_data).mark_line(clip=True).encode(
+            x=alt.X("ground truth value:Q", scale=alt.Scale(domain=(0, lim))),
+            y=alt.Y("predicted value:Q", scale=alt.Scale(domain=(0, lim))),
+        ).properties(
+            width=400,
+            height=400
+        )
 
 
 # ## 4. Preprocess
@@ -174,7 +149,7 @@ def plot_pred(dv_set, model, device, lim=35., preds=None, targets=None):
 # 
 # Finishing `TODO` below might make you pass medium baseline.
 
-# In[4]:
+# In[108]:
 
 
 class COVID19Dataset(Dataset):
@@ -194,7 +169,7 @@ class COVID19Dataset(Dataset):
             feats = list(range(93))
         else:
             # TODO: Using 40 states & 2 tested_positive features (indices = 57 & 75)
-            pass
+            feats = list(range(1, 41)) + [57, 75]
 
         if mode == 'test':
             # Testing data
@@ -244,7 +219,7 @@ class COVID19Dataset(Dataset):
 # A `DataLoader` loads data from a given `Dataset` into batches.
 # 
 
-# In[5]:
+# In[109]:
 
 
 def prep_dataloader(path, mode, batch_size, n_jobs=0, target_only=False):
@@ -264,7 +239,7 @@ def prep_dataloader(path, mode, batch_size, n_jobs=0, target_only=False):
 # This module also included a function `cal_loss` for calculating loss.
 # 
 
-# In[6]:
+# In[132]:
 
 
 class NeuralNet(nn.Module):
@@ -277,7 +252,9 @@ class NeuralNet(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(input_dim, 64),
             nn.ReLU(),
-            nn.Linear(64, 1)
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1)
         )
 
         # Mean squared error loss
@@ -290,14 +267,17 @@ class NeuralNet(nn.Module):
     def cal_loss(self, pred, target):
         ''' Calculate loss '''
         # TODO: you may implement L1/L2 regularization here
-        return self.criterion(pred, target)
+        regularization_loss = 0
+        for param in self.net.parameters():
+            regularization_loss += torch.sum(param ** 2)
+        return self.criterion(pred, target) + 0.00075 * regularization_loss
 
 
 # ## 6. Train/Dev/Test
 
 # ### 6.1 Training
 
-# In[7]:
+# In[133]:
 
 
 def train(tr_set, dv_set, model, config, device):
@@ -348,7 +328,7 @@ def train(tr_set, dv_set, model, config, device):
 
 # ### 6.2 Validation
 
-# In[8]:
+# In[134]:
 
 
 def dev(dv_set, model, device):
@@ -367,7 +347,7 @@ def dev(dv_set, model, device):
 
 # ### 6.3 Testing
 
-# In[9]:
+# In[135]:
 
 
 def test(tt_set, model, device):
@@ -386,30 +366,30 @@ def test(tt_set, model, device):
 # 
 # `config` contains hyper-parameters for training and the path to save your model.
 
-# In[10]:
+# In[142]:
 
 
 device = get_device()                 # get the current available device ('cpu' or 'cuda')
-os.makedirs('models', exist_ok=True)  # The trained model will be saved to ./models/
+os.makedirs('models/hw1', exist_ok=True)  # The trained model will be saved to ./models/
 target_only = False                   # TODO: Using 40 states & 2 tested_positive features
 
 # TODO: How to tune these hyper-parameters to improve your model's performance?
 config = {
     'n_epochs': 3000,                # maximum number of epochs
-    'batch_size': 270,               # mini-batch size for dataloader
-    'optimizer': 'SGD',              # optimization algorithm (optimizer in torch.optim)
+    'batch_size': 200,               # mini-batch size for dataloader
+    'optimizer': 'Adam',              # optimization algorithm (optimizer in torch.optim)
     'optim_hparas': {                # hyper-parameters for the optimizer (depends on which optimizer you are using)
-        'lr': 0.001,                 # learning rate of SGD
-        'momentum': 0.9              # momentum for SGD
+#         'lr': 0.001,                 # learning rate of SGD
+#         'momentum': 0.9              # momentum for SGD
     },
-    'early_stop': 200,               # early stopping epochs (the number epochs since your model's last improvement)
-    'save_path': 'models/model.pth'  # your model will be saved here
+    'early_stop': 500,               # early stopping epochs (the number epochs since your model's last improvement)
+    'save_path': 'models/hw1/model.pth'  # your model will be saved here
 }
 
 
 # ## 8. Load data and model
 
-# In[11]:
+# In[137]:
 
 
 tr_set = prep_dataloader(tr_path, 'train', config['batch_size'], target_only=target_only)
@@ -417,7 +397,7 @@ dv_set = prep_dataloader(tr_path, 'dev', config['batch_size'], target_only=targe
 tt_set = prep_dataloader(tt_path, 'test', config['batch_size'], target_only=target_only)
 
 
-# In[12]:
+# In[138]:
 
 
 model = NeuralNet(tr_set.dataset.dim).to(device)  # Construct model and move to device
@@ -425,19 +405,19 @@ model = NeuralNet(tr_set.dataset.dim).to(device)  # Construct model and move to 
 
 # ## 9. Start Training!
 
-# In[13]:
+# In[139]:
 
 
 model_loss, model_loss_record = train(tr_set, dv_set, model, config, device)
 
 
-# In[14]:
+# In[140]:
 
 
 plot_learning_curve(model_loss_record, title='deep model')
 
 
-# In[15]:
+# In[141]:
 
 
 del model
@@ -450,7 +430,7 @@ plot_pred(dv_set, model, device)  # Show prediction on the validation set
 # ## 10. Testing
 # The predictions of your model on testing set will be stored at `pred.csv`.
 
-# In[16]:
+# In[143]:
 
 
 def save_pred(preds, file):
@@ -463,7 +443,9 @@ def save_pred(preds, file):
             writer.writerow([i, p])
 
 preds = test(tt_set, model, device)  # predict COVID-19 cases with your model
-save_pred(preds, 'pred.csv')         # save prediction file to pred.csv
+
+os.makedirs('preds/hw1', exist_ok=True)
+save_pred(preds, 'preds/hw1/pred.csv')         # save prediction file to pred.csv
 
 
 # ## 11. Hints
